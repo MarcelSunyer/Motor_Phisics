@@ -27,11 +27,29 @@ bool ModulePhysics::Start()
 	ground.w = 30.0f; // [m]
 	ground.h = 5.0f; // [m]
 
-	ground1 = Ground();
-	ground1.x = 10.0f; // [m]
-	ground1.y = 10.0f; // [m]
-	ground1.w = 30.0f; // [m]
-	ground1.h = 5.0f; // [m]
+	plataforma_1 = Ground();
+	plataforma_1.x = 3.0f; // [m]
+	plataforma_1.y = 15.0f; // [m]
+	plataforma_1.w = 15.0f; // [m]
+	plataforma_1.h = 2.0f; // [m]
+	
+	//-------------------------------------------------------------------------
+	
+	plataforma_2 = Ground();
+	plataforma_2.x = 35.0f; // [m]
+	plataforma_2.y = 22.0f; // [m]
+	plataforma_2.w = 10.0f; // [m]
+	plataforma_2.h = 2.0f; // [m]
+	
+	////-------------------------------------------------------------------------
+	//
+	plataforma_3 = Ground();
+	plataforma_3.x = 5.0f; // [m]
+	plataforma_3.y = 28.0f; // [m]
+	plataforma_3.w = 5.0f; // [m]
+	plataforma_3.h = 2.0f; // [m]
+
+
 
 
 	// Create Water
@@ -56,7 +74,7 @@ bool ModulePhysics::Start()
 	// Set static properties of the ball
 	ball.mass = 10.0f; // [kg]
 	ball.surface = 1.0f; // [m^2]
-	ball.radius = 3.0f; // [m]
+	ball.radius = 1.0f; // [m]
 	ball.cd = 0.4f; // [-]
 	ball.cl = 1.2f; // [-]
 	ball.b = 10.0f; // [...]
@@ -155,7 +173,7 @@ update_status ModulePhysics::PreUpdate()
 			ball.vx *= ball.coef_friction;
 			ball.vy *= ball.coef_restitution;
 		}
-		if (is_colliding_with_ground(ball, ground1))
+		if (is_colliding_with_ground(ball, plataforma_1))
 		{
 			// TP ball to ground surface
 			
@@ -165,8 +183,40 @@ update_status ModulePhysics::PreUpdate()
 			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
-			ball.vx *= ball.coef_friction;
-			ball.vy *= ball.coef_restitution;
+			ball.vy *= ball.coef_friction;
+			ball.vx *= ball.coef_restitution;
+		}
+		
+		//-----------------------------------------------------------------------
+
+		if (is_colliding_with_ground(ball, plataforma_2))
+		{
+			// TP ball to ground surface
+
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+			ball.vx = -ball.vx;
+
+			// FUYM non-elasticity
+			ball.vy *= ball.coef_friction;
+			ball.vx *= ball.coef_restitution;
+		}
+
+		//-----------------------------------------------------------------------
+		
+		if (is_colliding_with_ground(ball, plataforma_3))
+		{
+			// TP ball to ground surface
+
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+			ball.vx = -ball.vx;
+
+			// FUYM non-elasticity
+			ball.vy *= ball.coef_friction;
+			ball.vx *= ball.coef_restitution;
 		}
 	}
 	
@@ -183,7 +233,9 @@ update_status ModulePhysics::PostUpdate()
 	// Draw ground
 	color_r = 0; color_g = 255; color_b = 0;
 	App->renderer->DrawQuad(ground.pixels(), color_r, color_g, color_b);
-	App->renderer->DrawQuad(ground1.pixels(), color_r, color_g, color_b);
+	App->renderer->DrawQuad(plataforma_1.pixels(), 255, color_g, color_b);
+	App->renderer->DrawQuad(plataforma_2.pixels(), 255, 0, 255);
+	App->renderer->DrawQuad(plataforma_3.pixels(), color_r, color_g, 255);
 
 	// Draw water
 	color_r = 0; color_g = 0; color_b = 255;
