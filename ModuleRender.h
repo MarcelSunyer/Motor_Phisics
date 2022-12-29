@@ -2,6 +2,15 @@
 #include "Module.h"
 #include "Globals.h"
 
+
+enum class Controls
+{
+	POSITION,
+	VELOCITY,
+	FORCE,
+	MOMENTUM
+};
+
 class ModuleRender : public Module
 {
 public:
@@ -22,4 +31,11 @@ public:
 public:
 	SDL_Renderer* renderer;
 	SDL_Rect camera;
+
+	//Debug info controles (Solo visual)
+	SDL_Texture* texto_controles;
+	SDL_Rect rect_texto_controles;
+
+	//Variable para cambiar los controles
+	Controls control_system = Controls::VELOCITY;
 };

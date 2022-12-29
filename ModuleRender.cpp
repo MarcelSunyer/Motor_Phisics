@@ -34,6 +34,10 @@ bool ModuleRender::Init()
 		ret = false;
 	}
 
+	control_system = Controls::VELOCITY;
+
+	texto_controles = App->textures->Load("Assets/Controls.png");
+
 	return ret;
 }
 
@@ -48,60 +52,87 @@ update_status ModuleRender::PreUpdate()
 // Update: debug camera
 update_status ModuleRender::Update()
 {
-	/*
-	int speed = 3;
-
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->renderer->camera.y += speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->renderer->camera.y -= speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->renderer->camera.x += speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->renderer->camera.x -= speed;
-	*/
+	//Reset de la posición de la bola
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
 	{
-		/*int mouse_x, mouse_y;
-		Uint8 mouse_b = SDL_GetMouseState(&mouse_x, &mouse_y);
-		App->physics->balls.front().x = mouse_x;
-		App->physics->balls.front().x = mouse_y;*/
-
 		App->physics->balls.front().x = App->physics->balls.front().x + 1;
 		App->physics->balls.front().y = App->physics->balls.front().y + 1;
 	}
 
-
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->physics->balls.front().y = App->physics->balls.front().y + 1;
-
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->physics->balls.front().y = App->physics->balls.front().y - 1;
-
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->physics->balls.front().x = App->physics->balls.front().x - 1;
-
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->physics->balls.front().x = App->physics->balls.front().x + 1;
+	//Para cabiar de esquema de controles
+	if (App->input->GetKey(SDL_SCANCODE_TAB) == KEY_DOWN)
+	{
+		switch (control_system)
+		{
+		case Controls::POSITION:
+			control_system = Controls::VELOCITY;
+			rect_texto_controles = { 0, 50, 400 , 50 };
+			LOG("VELOCITY")
+			break;
+		case Controls::VELOCITY:
+			control_system = Controls::FORCE;
+			rect_texto_controles = { 0, 100, 400 , 50 };
+			LOG("FORCE")
+			break;
+		case Controls::FORCE:
+			control_system = Controls::MOMENTUM;
+			rect_texto_controles = { 0, 150, 400 , 50 };
+			LOG("MOMENTUM");
+			break;
+		case Controls::MOMENTUM:
+			control_system = Controls::POSITION;
+			rect_texto_controles = { 0, 200, 400 , 50 };
+			LOG("POSITION")
+			break;
+		}		
+	}
 	
+	switch (control_system)
+	{
+	case Controls::POSITION:
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-		App->physics->balls.front().vy = 10;
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			App->physics->balls.front().y = App->physics->balls.front().y + 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-		App->physics->balls.front().vy = -10;
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			App->physics->balls.front().y = App->physics->balls.front().y - 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		App->physics->balls.front().vx = -10;
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().x = App->physics->balls.front().x - 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		App->physics->balls.front().vx = 10;
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().x = App->physics->balls.front().x + 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		App->physics->balls.front().vy = 25;
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			App->physics->balls.front().y = App->physics->balls.front().y + 50;
+
+		break;
+	case Controls::VELOCITY:
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			App->physics->balls.front().vy = 10;
+
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			App->physics->balls.front().vy = -10;
+
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().vx = -10;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().vx = 10;
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			App->physics->balls.front().vy = 25;
+
+		break;
+	case Controls::FORCE:
+		break;
+	case Controls::MOMENTUM:
+		break;
+	}
+	
+	
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -109,6 +140,21 @@ update_status ModuleRender::Update()
 // PostUpdate present buffer to screen
 update_status ModuleRender::PostUpdate()
 {
+	switch (control_system)
+	{
+	case Controls::POSITION:
+		Blit(texto_controles, 0, 50, &rect_texto_controles);
+		break;
+	case Controls::VELOCITY:
+		Blit(texto_controles, 0, 50, &rect_texto_controles);
+		break;
+	case Controls::FORCE:
+		Blit(texto_controles, 0, 50, &rect_texto_controles);
+		break;
+	case Controls::MOMENTUM:
+		Blit(texto_controles, 0, 50, &rect_texto_controles);
+		break;
+	}
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;
 }
