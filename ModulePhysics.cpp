@@ -155,6 +155,19 @@ update_status ModulePhysics::PreUpdate()
 			ball.vx *= ball.coef_friction;
 			ball.vy *= ball.coef_restitution;
 		}
+		if (is_colliding_with_ground(ball, ground1))
+		{
+			// TP ball to ground surface
+			
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+			ball.vx = -ball.vx;
+
+			// FUYM non-elasticity
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
+		}
 	}
 	
 	// Continue game
