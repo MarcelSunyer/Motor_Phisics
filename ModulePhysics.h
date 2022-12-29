@@ -95,9 +95,13 @@ public:
 	std::vector<PhysBall> balls{};
 	Atmosphere atmosphere{};
 	Ground ground{};
+	
 	Ground plataforma_1{};
 	Ground plataforma_2{};
 	Ground plataforma_3{};
+	
+	Ground pared_d{};
+	Ground pared_i{};
 	Water water{};
 
 	// Misc
