@@ -100,6 +100,9 @@ update_status ModuleRender::Update()
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		App->physics->balls.front().vx = 10;
 
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		App->physics->balls.front().vy = 25;
+
 	return UPDATE_CONTINUE;
 }
 
