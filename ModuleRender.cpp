@@ -63,6 +63,43 @@ update_status ModuleRender::Update()
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->renderer->camera.x -= speed;
 	*/
+	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
+	{
+		/*int mouse_x, mouse_y;
+		Uint8 mouse_b = SDL_GetMouseState(&mouse_x, &mouse_y);
+		App->physics->balls.front().x = mouse_x;
+		App->physics->balls.front().x = mouse_y;*/
+
+		App->physics->balls.front().x = App->physics->balls.front().x + 1;
+		App->physics->balls.front().y = App->physics->balls.front().y + 1;
+	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		App->physics->balls.front().y = App->physics->balls.front().y + 1;
+
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		App->physics->balls.front().y = App->physics->balls.front().y - 1;
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		App->physics->balls.front().x = App->physics->balls.front().x - 1;
+
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		App->physics->balls.front().x = App->physics->balls.front().x + 1;
+	
+
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		App->physics->balls.front().vy = 10;
+
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		App->physics->balls.front().vy = -10;
+
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		App->physics->balls.front().vx = -10;
+
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		App->physics->balls.front().vx = 10;
+
 	return UPDATE_CONTINUE;
 }
 
