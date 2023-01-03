@@ -157,6 +157,12 @@ update_status ModulePhysics::PreUpdate()
 			ball.fx += fhbx; ball.fy += fhby; // Add this force to ball's total force
 		}
 
+		// Impulsive forces (only if there is any)
+		if (true)
+		{
+
+		}
+
 		// Other forces
 		// ...
 
@@ -369,6 +375,16 @@ void compute_hydrodynamic_buoyancy(float& fx, float& fy, const PhysBall& ball, c
 	double fbuoyancy_modulus = water.density * 10.0 * surf; // Buoyancy force (modulus)
 	fx = 0.0; // Buoyancy is parallel to pressure gradient
 	fy = fbuoyancy_modulus; // Buoyancy is parallel to pressure gradient
+}
+
+
+// Apply Impulsive force to a ball
+void PhysBall::ApplyImpulse(float impulseX, float impulseY) {
+	
+	// Actualiza la velocidad del cuerpo en función de la fuerza impulsiva y la masa
+	this->vx += impulseX / this->mass;
+	this->vy += impulseY / this->mass;
+
 }
 
 // Integration scheme: Velocity Verlet

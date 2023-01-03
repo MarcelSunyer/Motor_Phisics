@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRender.h"
+#include "ModulePhysics.h"
 
 ModuleRender::ModuleRender(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -104,7 +105,7 @@ update_status ModuleRender::Update()
 			App->physics->balls.front().x = App->physics->balls.front().x + 1;
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().y = App->physics->balls.front().y + 50;
+			App->physics->balls.front().ApplyImpulse(0, 50);
 
 		break;
 	case Controls::VELOCITY:
@@ -122,12 +123,44 @@ update_status ModuleRender::Update()
 			App->physics->balls.front().vx = 10;
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().vy = 25;
+			App->physics->balls.front().ApplyImpulse(0, 50);
 
 		break;
 	case Controls::FORCE:
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			App->physics->balls.front().fy = 100;
+
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			App->physics->balls.front().fy = -100;
+
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().fx = -100;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().fx = 100;
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			App->physics->balls.front().ApplyImpulse(0, 50);
+
 		break;
 	case Controls::MOMENTUM:
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			App->physics->balls.front().ay = 10;
+
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			App->physics->balls.front().ay = -10;
+
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().ax = -10;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().ax = 10;
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			App->physics->balls.front().ApplyImpulse(0, 50);
+
 		break;
 	}
 	

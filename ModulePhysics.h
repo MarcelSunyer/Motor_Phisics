@@ -32,6 +32,10 @@ public:
 	float fx;
 	float fy;
 
+	// Impulse applied to the ball
+	float ix;
+	float iy;
+
 	// Mass
 	float mass;
 
@@ -50,6 +54,12 @@ public:
 
 	// Has physics enabled?
 	bool physics_enabled = true;
+
+
+	//Funciones:
+
+	// Compute Impulsive force
+	void ApplyImpulse(float impulseX, float impulseY);
 };
 
 // Class: Ground
