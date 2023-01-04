@@ -65,6 +65,12 @@ public:
 	SDL_Texture* tex_light_tiny;
 	SDL_Texture* tex_light_medium;
 	SDL_Texture* tex_light_big;
+
+	//escenas
+	SDL_Texture* startSprite;
+
+	bool lose = false;
+	bool start = true;
 	
 	uint fx_light_tiny;
 	uint fx_light_medium;
