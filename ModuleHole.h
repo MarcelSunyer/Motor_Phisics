@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include "p2List.h"
+#include "p2Point.h"
 
 class ModuleHole : public Module
 {
@@ -18,6 +20,7 @@ public:
 
 public:
 	SDL_Texture* juan;
+	int posiciones[3];
 };
 
 

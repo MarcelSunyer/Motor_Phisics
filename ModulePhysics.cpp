@@ -198,7 +198,7 @@ update_status ModulePhysics::PreUpdate()
 		{
 			// TP ball to ground surface
 			
-
+			
 			// Elastic bounce with ground
 			ball.vy = -ball.vy;
 			ball.vx = -ball.vx;
@@ -457,5 +457,6 @@ SDL_Rect Ground::pixels()
 	pos_px.h = METERS_TO_PIXELS(-h); // Can I do this? LOL
 	return pos_px;
 }
+
 
 

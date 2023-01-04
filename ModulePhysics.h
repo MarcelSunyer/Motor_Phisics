@@ -90,7 +90,13 @@ public:
 	float windx; // Wind x
 	float windy; // Wind y
 };
-
+class PhysHole
+{
+	float x;
+	float y;
+	
+	float radius;
+};
 
 
 class ModulePhysics : public Module
