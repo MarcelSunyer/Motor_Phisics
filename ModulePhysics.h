@@ -58,7 +58,7 @@ public:
 
 	//Funciones:
 
-	// Compute Impulsive force
+	// Apply Impulsive force to a ball - (0º movimiento hacia arriba, 90º movimiento a la derecha)
 	void ApplyImpulse(float angulo, float potencia);
 };
 

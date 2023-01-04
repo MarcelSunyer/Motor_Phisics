@@ -380,7 +380,7 @@ void compute_hydrodynamic_buoyancy(float& fx, float& fy, const PhysBall& ball, c
 }
 
 
-// Apply Impulsive force to a ball
+// Apply Impulsive force to a ball - (0º movimiento hacia arriba, 90º movimiento a la derecha)
 void PhysBall::ApplyImpulse(float angulo, float potencia) {
 	
 	//Calculamos un vector unitario y lo multiplicamos por la potencia
