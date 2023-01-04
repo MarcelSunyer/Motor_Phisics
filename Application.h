@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include "ModulePhysics.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleHole.h"
 
 class Application
 {
@@ -24,6 +25,7 @@ public:
 	ModulePlayer* player;
 	ModuleSceneIntro* scene_intro;
 	ModulePhysics* physics;
+	ModuleHole* hole;
 
 private:
 

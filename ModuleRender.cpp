@@ -53,6 +53,8 @@ update_status ModuleRender::PreUpdate()
 // Update: debug camera
 update_status ModuleRender::Update()
 {
+	
+	
 	//Reset de la posición de la bola
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
 	{
