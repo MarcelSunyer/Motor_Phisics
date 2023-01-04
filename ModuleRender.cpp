@@ -188,7 +188,7 @@ update_status ModuleRender::Update()
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
 	{
 		//Cambiar potencia (+)
-		if (App->physics->balls.front().potencia != 100)
+		if (App->physics->balls.front().potencia != 750)
 		{
 			App->physics->balls.front().potencia = App->physics->balls.front().potencia + 10;
 			LOG("Potencia: %d", App->physics->balls.front().potencia)
