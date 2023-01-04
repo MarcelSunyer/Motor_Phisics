@@ -59,7 +59,7 @@ public:
 	//Funciones:
 
 	// Compute Impulsive force
-	void ApplyImpulse(float impulseX, float impulseY);
+	void ApplyImpulse(float angulo, float potencia);
 };
 
 // Class: Ground

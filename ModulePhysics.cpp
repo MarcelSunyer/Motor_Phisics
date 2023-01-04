@@ -120,12 +120,7 @@ update_status ModulePhysics::PreUpdate()
 			continue;
 		}
 
-		// Step #0: Clear old values
-		// ----------------------------------------------------------------------------------------
 		
-		// Reset total acceleration and total accumulated force of the ball
-		ball.fx = ball.fy = 0.0f;
-		ball.ax = ball.ay = 0.0f;
 
 		// Step #1: Compute forces
 		// ----------------------------------------------------------------------------------------
@@ -275,6 +270,13 @@ update_status ModulePhysics::PreUpdate()
 			ball.vy *= ball.coef_friction;
 			ball.vx *= ball.coef_restitution;
 		}
+
+		// Step #0: Clear old values
+		// ----------------------------------------------------------------------------------------
+
+		// Reset total acceleration and total accumulated force of the ball
+		ball.fx = ball.fy = 0.0f;
+		ball.ax = ball.ay = 0.0f;
 	}
 	
 	// Continue game
@@ -379,11 +381,19 @@ void compute_hydrodynamic_buoyancy(float& fx, float& fy, const PhysBall& ball, c
 
 
 // Apply Impulsive force to a ball
-void PhysBall::ApplyImpulse(float impulseX, float impulseY) {
+void PhysBall::ApplyImpulse(float angulo, float potencia) {
+	
+	//Calculamos un vector unitario y lo multiplicamos por la potencia
+	//Convertir angulo radianes
+	double radianes = angulo * M_PI / 180;
+
+	// Calcula las coordenadas del vector unitario
+	double x = std::sin(radianes);
+	double y = std::cos(radianes);
 	
 	// Actualiza la velocidad del cuerpo en función de la fuerza impulsiva y la masa
-	this->vx += impulseX / this->mass;
-	this->vy += impulseY / this->mass;
+	this->vx += x * potencia / this->mass;
+	this->vy += y * potencia / this->mass;
 
 }
 
