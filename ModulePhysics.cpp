@@ -100,8 +100,9 @@ bool ModulePhysics::Start()
 	// Set initial position and velocity of the ball
 	ball.x = 2.0f;
 	ball.y = (ground.y + ground.h) + 2.0f;
-	ball.vx = 5.0f;
-	ball.vy = 10.0f;
+	ball.vx = 0;
+	ball.vy = 0;
+	ball.physics_enabled = false;
 
 	// Add ball to the collection
 	balls.push_back(ball);

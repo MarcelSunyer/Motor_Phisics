@@ -55,6 +55,9 @@ public:
 	// Has physics enabled?
 	bool physics_enabled = true;
 
+	// Variables para el disparo
+	float angle = 0;
+	float potencia = 0;
 
 	//Funciones:
 

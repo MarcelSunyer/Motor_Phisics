@@ -104,9 +104,6 @@ update_status ModuleRender::Update()
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			App->physics->balls.front().x = App->physics->balls.front().x + 1;
 
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().ApplyImpulse(0, 50);
-
 		break;
 	case Controls::VELOCITY:
 
@@ -121,9 +118,6 @@ update_status ModuleRender::Update()
 
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			App->physics->balls.front().vx = 10;
-
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().ApplyImpulse(0, 50);
 
 		break;
 	case Controls::FORCE:
@@ -140,9 +134,6 @@ update_status ModuleRender::Update()
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			App->physics->balls.front().fx = 100;
 
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().ApplyImpulse(0, 50);
-
 		break;
 	case Controls::MOMENTUM:
 
@@ -158,14 +149,77 @@ update_status ModuleRender::Update()
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			App->physics->balls.front().ax = 10;
 
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			App->physics->balls.front().ApplyImpulse(0, 50);
-
 		break;
 	}
-	
-	
-	
+
+
+
+	//APUNTAR
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)
+	{
+		//Cambiar el angulo (-)
+		if (App->physics->balls.front().angle != -90 )
+		{
+			App->physics->balls.front().angle = App->physics->balls.front().angle - 15;
+			LOG("Angulo: %d", App->physics->balls.front().angle)
+		}
+		else
+		{
+			LOG("Angulo: %d", App->physics->balls.front().angle)
+		}
+		
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)
+	{
+		//Cambiar el angulo (+)
+		if (App->physics->balls.front().angle != 90)
+		{
+			App->physics->balls.front().angle = App->physics->balls.front().angle + 15;
+			LOG("Angulo: %d", App->physics->balls.front().angle)
+		}
+		else
+		{
+			LOG("Angulo: %d", App->physics->balls.front().angle)
+		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	{
+		//Cambiar potencia (+)
+		if (App->physics->balls.front().potencia != 100)
+		{
+			App->physics->balls.front().potencia = App->physics->balls.front().potencia + 10;
+			LOG("Potencia: %d", App->physics->balls.front().potencia)
+		}
+		else
+		{
+			LOG("Potencia: %d", App->physics->balls.front().potencia)
+		}
+		
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)
+	{
+		//Cambiar potencia (-)
+		if (App->physics->balls.front().potencia != 0)
+		{
+			App->physics->balls.front().potencia = App->physics->balls.front().potencia - 10;
+			LOG("Potencia: %d", App->physics->balls.front().potencia)
+		}
+		else
+		{
+			LOG("Potencia: %d", App->physics->balls.front().potencia)
+		}
+	}
+
+	//Disparar
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		App->physics->balls.front().ApplyImpulse(App->physics->balls.front().angle, App->physics->balls.front().potencia);
+		App->physics->balls.front().physics_enabled = true;
+	}
 
 	return UPDATE_CONTINUE;
 }
