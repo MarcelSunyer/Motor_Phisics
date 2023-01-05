@@ -330,7 +330,13 @@ update_status ModulePhysics::PostUpdate()
 		// Draw ball
 		App->renderer->DrawCircle(pos_x, pos_y, size_r, color_r, color_g, color_b);
 		
+		if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h)==true)
+		{
+			App->hole->tocado = true;
+		}
 	}
+	
+	
 
 	return UPDATE_CONTINUE;
 }

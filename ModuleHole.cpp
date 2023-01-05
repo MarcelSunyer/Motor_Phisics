@@ -38,9 +38,10 @@ update_status ModuleHole::Update()
 	if (tocado == true)
 	{
 		Randomizer(random);
+		tocado = false;
 	}
 	
-	
+
 	App->renderer->DrawQuad(juan[random], 255, 255, 255);
 	App->renderer->Blit(juans, juan[random].x - 17, juan[random].y - 70);
 	
