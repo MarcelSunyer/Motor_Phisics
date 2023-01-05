@@ -17,10 +17,13 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	void Randomizer(int x);
 
 public:
-	SDL_Texture* juan;
-	int posiciones[3];
+	SDL_Texture* juans;
+	p2Point<int> juan[3];
+	int random = 1;
+	bool tocado = false;
 };
 
 

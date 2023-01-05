@@ -7,6 +7,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "p2DynArray.h"
+#include <time.h>
 
 
 // Constructor
@@ -18,12 +19,15 @@ ModuleHole::~ModuleHole()
 
 bool ModuleHole::Start()
 {
-	juan = App->textures->Load("Assets/Palo_golf.png");
+	juans = App->textures->Load("Assets/Palo_golf.png");
 	LOG("Loading holes");
 	//Posicion_1 || Hacer una variable x y y para cada espacio de la array y que estos sean randoms.
 
-	p2Point<int> juan;
-	/*posiciones[0] = p2Point{}*/
+	
+	juan[0].x = 100, juan[0].y = 100;
+
+	juan[1].x = 200, juan[1].y = 200;
+	juan[2].x = 300, juan[2].y = 300;
 	
 	
 	return true;
@@ -31,9 +35,13 @@ bool ModuleHole::Start()
 
 update_status ModuleHole::Update()
 {
-	
-	App->renderer->Blit(juan,290,320);
-	App->renderer->DrawCircle(posiciones[0], 17, 255, 255, 255);
+	if (tocado == true)
+	{
+		
+	}
+	Randomizer(random);
+	App->renderer->Blit(juans, juan[random].x, juan[random].y);
+	App->renderer->DrawCircle(juan[random].x, juan[random].y, 10, 255, 255, 255);
 	
 	return UPDATE_CONTINUE;
 }
@@ -43,3 +51,11 @@ bool ModuleHole::CleanUp()
 	LOG("Unloading player");
 	return true;
 }
+
+void ModuleHole::Randomizer(int x)
+{
+	time_t times = 3000;
+	srand(time(&times));
+	random = rand() % 3 + 0;
+}
+

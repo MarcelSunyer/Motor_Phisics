@@ -3,6 +3,7 @@
 #include "ModulePhysics.h"
 #include "math.h"
 #include <cmath>
+#include "ModuleHole.h"
 
 // TODO 1: Include Box 2 header and library
 
@@ -104,6 +105,10 @@ bool ModulePhysics::Start()
 	ball.vy = 0;
 	ball.physics_enabled = false;
 
+	if (ball.x >= 5.0)
+	{
+		App->hole->tocado = true;
+	}
 	// Add ball to the collection
 	balls.push_back(ball);
 	
