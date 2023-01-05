@@ -22,7 +22,8 @@ bool ModuleHole::Start()
 	LOG("Loading holes");
 	//Posicion_1 || Hacer una variable x y y para cada espacio de la array y que estos sean randoms.
 
-	//posiciones[0] = p2Point()
+	p2Point<int> juan;
+	/*posiciones[0] = p2Point{}*/
 	
 	
 	return true;
