@@ -21,7 +21,7 @@ public:
 
 public:
 	SDL_Texture* juans;
-	p2Point<int> juan[3];
+	SDL_Rect juan[3];
 	int random = 1;
 	bool tocado = false;
 };
