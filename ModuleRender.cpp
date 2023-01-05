@@ -83,9 +83,14 @@ update_status ModuleRender::Update()
 			LOG("MOMENTUM");
 			break;
 		case Controls::MOMENTUM:
-			control_system = Controls::POSITION;
+			control_system = Controls::ACCELERATION;
 			rect_texto_controles = { 0, 200, 400 , 50 };
 			LOG("POSITION")
+			break;
+		case Controls::ACCELERATION:
+			control_system = Controls::POSITION;
+			rect_texto_controles = { 0, 250, 400 , 50 };
+			LOG("ACCELERATION")
 			break;
 		}		
 	}
@@ -140,16 +145,31 @@ update_status ModuleRender::Update()
 	case Controls::MOMENTUM:
 
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().ay = 10;
+			App->physics->balls.front().vy = 10;
 
 		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().ay = -10;
+			App->physics->balls.front().vy = -10;
 
 		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().ax = -10;
+			App->physics->balls.front().vx = -10;
 
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().ax = 10;
+			App->physics->balls.front().vx = 10;
+
+		break;
+	case Controls::ACCELERATION:
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			App->physics->balls.front().fy = 100;
+
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			App->physics->balls.front().fy = -100;
+
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().fx = -100;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().fx = 100;
 
 		break;
 	}
@@ -164,11 +184,11 @@ update_status ModuleRender::Update()
 		if (App->physics->balls.front().angle != -90 )
 		{
 			App->physics->balls.front().angle = App->physics->balls.front().angle - 15;
-			LOG("Angulo: %d", App->physics->balls.front().angle)
+			LOG("Angulo: %d", this->App->physics->balls.front().angle)
 		}
 		else
 		{
-			LOG("Angulo: %d", App->physics->balls.front().angle)
+			LOG("Angulo: %d", this->App->physics->balls.front().angle)
 		}
 		
 	}
@@ -179,11 +199,11 @@ update_status ModuleRender::Update()
 		if (App->physics->balls.front().angle != 90)
 		{
 			App->physics->balls.front().angle = App->physics->balls.front().angle + 15;
-			LOG("Angulo: %d", App->physics->balls.front().angle)
+			LOG("Angulo: %d", this->App->physics->balls.front().angle)
 		}
 		else
 		{
-			LOG("Angulo: %d", App->physics->balls.front().angle)
+			LOG("Angulo: %d", this->App->physics->balls.front().angle)
 		}
 	}
 
@@ -193,11 +213,11 @@ update_status ModuleRender::Update()
 		if (App->physics->balls.front().potencia != 750)
 		{
 			App->physics->balls.front().potencia = App->physics->balls.front().potencia + 10;
-			LOG("Potencia: %d", App->physics->balls.front().potencia)
+			LOG("Potencia: %d", this->App->physics->balls.front().potencia)
 		}
 		else
 		{
-			LOG("Potencia: %d", App->physics->balls.front().potencia)
+			LOG("Potencia: %d", this->App->physics->balls.front().potencia)
 		}
 		
 	}
@@ -208,11 +228,11 @@ update_status ModuleRender::Update()
 		if (App->physics->balls.front().potencia != 0)
 		{
 			App->physics->balls.front().potencia = App->physics->balls.front().potencia - 10;
-			LOG("Potencia: %d", App->physics->balls.front().potencia)
+			LOG("Potencia: %d", this->App->physics->balls.front().potencia)
 		}
 		else
 		{
-			LOG("Potencia: %d", App->physics->balls.front().potencia)
+			LOG("Potencia: %d", this->App->physics->balls.front().potencia)
 		}
 	}
 
@@ -229,21 +249,13 @@ update_status ModuleRender::Update()
 // PostUpdate present buffer to screen
 update_status ModuleRender::PostUpdate()
 {
-	switch (control_system)
-	{
-	case Controls::POSITION:
-		Blit(texto_controles, 0, 50, &rect_texto_controles);
-		break;
-	case Controls::VELOCITY:
-		Blit(texto_controles, 0, 50, &rect_texto_controles);
-		break;
-	case Controls::FORCE:
-		Blit(texto_controles, 0, 50, &rect_texto_controles);
-		break;
-	case Controls::MOMENTUM:
-		Blit(texto_controles, 0, 50, &rect_texto_controles);
-		break;
-	}
+	//Blit del titulo
+	SDL_Rect rect = { 0, 0, 500, 50 };
+	Blit(texto_controles, 0, 0, &rect);
+
+	//Blit del Control method
+	Blit(texto_controles, 0, 50, &rect_texto_controles);
+	
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;
 }
