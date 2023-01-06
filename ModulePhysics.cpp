@@ -305,6 +305,110 @@ update_status ModulePhysics::PreUpdate()
 		// Reset total acceleration and total accumulated force of the ball
 		ball.fx = ball.fy = 0.0f;
 		ball.ax = ball.ay = 0.0f;
+
+
+		//Aplicar fuerza de viento hacia la derecha
+		if (App->input->GetKey(SDL_SCANCODE_1)==KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			atmosphere.windx += 5;
+		}
+		//Aplicar fuerza de viento hacia la izquierda
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			atmosphere.windx -= 5;
+		}
+		//Aplicar fuerza de viento hacia arriba
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN)
+		{
+			atmosphere.windy += 5;
+		}
+		//Aplicar fuerza de viento hacia abajo
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
+		{
+			atmosphere.windy -= 5;
+		}
+		//Aumenta densidad de l'atmosfera
+		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			atmosphere.density += 5;
+		}
+		//Disminuye densidad de l'atmosfera
+		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			atmosphere.density -= 5;
+		}
+		//Aumenta la massa y el radio de la pelota
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			ball.mass += 10;
+			ball.radius += 0.5;
+		}
+		//Disminuye la massa y el radio de la pelota
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			ball.mass -= 5;
+			ball.radius -= 0.5;
+		}
+		//Aumenta la resistencia aerodinamica
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			ball.cd += 1;
+			
+		}
+		//Disminuye la resistencia aerodinamica
+		if (App->input->GetKey(SDL_SCANCODE_4) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			ball.cd -= 1;
+
+		}
+		//Aumenta el lift aerodinamico
+		if (App->input->GetKey(SDL_SCANCODE_5) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			ball.cl += 1;
+
+		}
+		//Disminuye el lift aerodinamico
+		if (App->input->GetKey(SDL_SCANCODE_5) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			ball.cl -= 1;
+
+		}
+		//Aumenta el coeficiente de friccion
+		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			ball.coef_friction += 2;
+
+		}
+		//Disminuye el coeficiente de friccionCoeficient de restitució
+		if (App->input->GetKey(SDL_SCANCODE_6) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			ball.coef_friction -= 2;
+
+		}
+		//Aumenta el coeficient de restitució
+		if (App->input->GetKey(SDL_SCANCODE_7) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			ball.coef_restitution += 2;
+
+		}
+		//Disminuye el coeficient de restitució
+		if (App->input->GetKey(SDL_SCANCODE_7) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			ball.coef_restitution -= 2;
+
+		}
+		//Aumenta la densidad del agua
+		if (App->input->GetKey(SDL_SCANCODE_8) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			water.density += 5;
+
+		}
+		//Disminuye la densidad del agua
+		if (App->input->GetKey(SDL_SCANCODE_8) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		{
+			water.density -= 5;
+
+		}
 	}
 	
 	// Continue game
@@ -355,6 +459,11 @@ update_status ModulePhysics::PostUpdate()
 		if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h)==true)
 		{
 			App->hole->tocado = true;
+			ball.x = 2.0f;
+			ball.y = (ground.y + ground.h) + 1.1;
+			ball.vx = 0;
+			ball.vy = 0;
+
 		}
 	}
 	
