@@ -84,13 +84,13 @@ update_status ModuleRender::Update()
 			break;
 		case Controls::MOMENTUM:
 			control_system = Controls::ACCELERATION;
-			rect_texto_controles = { 0, 200, 400 , 50 };
-			LOG("POSITION")
+			rect_texto_controles = { 0, 250, 400 , 50 };
+			LOG("ACCELERATION")
 			break;
 		case Controls::ACCELERATION:
 			control_system = Controls::POSITION;
-			rect_texto_controles = { 0, 250, 400 , 50 };
-			LOG("ACCELERATION")
+			rect_texto_controles = { 0, 200, 400 , 50 };
+			LOG("POSITION")
 			break;
 		}		
 	}
