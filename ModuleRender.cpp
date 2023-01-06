@@ -53,13 +53,38 @@ update_status ModuleRender::PreUpdate()
 // Update: debug camera
 update_status ModuleRender::Update()
 {
+	if (App->physics->balls.front().on_floor == true)
+	{
+		
+		App->physics->balls.front().physics_enabled = false;
+		
+	}
+
 	
+	// Cambiar la posición del saque
+	if (App->physics->balls.front().physics_enabled == false)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			App->physics->balls.front().x = App->physics->balls.front().x - 0.1;
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			App->physics->balls.front().x = App->physics->balls.front().x + 0.1;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+		App->physics->balls.front().physics_enabled = !App->physics->balls.front().physics_enabled;
 	
 	//Reset de la posición de la bola
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
 	{
-		App->physics->balls.front().x = App->physics->balls.front().x + 1;
-		App->physics->balls.front().y = App->physics->balls.front().y + 1;
+		App->physics->balls.front().x = 2.0f;
+		App->physics->balls.front().y = (App->physics->ground.y + App->physics->ground.h) + 2.0f;
+		App->physics->balls.front().vx = 0;
+		App->physics->balls.front().vy = 0;
+		App->physics->balls.front().fx = 0;
+		App->physics->balls.front().fy = 0;
+		App->physics->balls.front().physics_enabled = false;
+
 	}
 
 	//Para cabiar de esquema de controles
@@ -237,7 +262,7 @@ update_status ModuleRender::Update()
 	}
 
 	//Disparar
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !App->physics->balls.front().physics_enabled)
 	{
 		App->physics->balls.front().ApplyImpulse(App->physics->balls.front().angle, App->physics->balls.front().potencia);
 		App->physics->balls.front().physics_enabled = true;

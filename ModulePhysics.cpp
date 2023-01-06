@@ -100,7 +100,7 @@ bool ModulePhysics::Start()
 
 	// Set initial position and velocity of the ball
 	ball.x = 2.0f;
-	ball.y = (ground.y + ground.h) + 2.0f;
+	ball.y = (ground.y + ground.h) + 1.1;
 	ball.vx = 0;
 	ball.vy = 0;
 	ball.physics_enabled = false;
@@ -183,9 +183,30 @@ update_status ModulePhysics::PreUpdate()
 		// Step #4: solve collisions
 		// ----------------------------------------------------------------------------------------
 
+		// Calculate if it is off floor
+		if (ball.vy > -0.5 && ball.vy < 0.5)
+		{
+
+		}
+		else
+		{
+			ball.on_floor = false;
+		}
+
+
+
 		// Solve collision between ball and ground
 		if (is_colliding_with_ground(ball, ground))
 		{
+			//Decección de que está en el suelo
+			if (ball.vy > -0.5 && ball.vy < 0.5)
+			{
+				ball.y = ball.y + 2;
+				ball.on_floor = true;
+			}
+			
+			
+
 			// TP ball to ground surface
 			ball.y = ground.y + ground.h + ball.radius;
 
@@ -265,6 +286,7 @@ update_status ModulePhysics::PreUpdate()
 		
 		if (is_colliding_with_ground(ball, pared_i))
 		{
+
 			// TP ball to ground surface
 
 

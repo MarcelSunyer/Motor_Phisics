@@ -59,6 +59,9 @@ public:
 	float angle = 0;
 	float potencia = 0;
 
+	// Variable para dejar controlar la ball al jugador
+	bool on_floor;
+
 	//Funciones:
 
 	// Apply Impulsive force to a ball - (0º movimiento hacia arriba, 90º movimiento a la derecha)
