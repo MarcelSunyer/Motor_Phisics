@@ -1,8 +1,4 @@
 #include "Application.h"
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 Application::Application()
 {
@@ -15,7 +11,6 @@ Application::Application()
 	scene_intro = new ModuleSceneIntro(this);
 	physics = new ModulePhysics(this);
 	hole = new ModuleHole(this);
-	
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order

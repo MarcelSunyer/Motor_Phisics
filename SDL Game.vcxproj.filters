@@ -59,15 +59,6 @@
     <ClInclude Include="ModuleHole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FadeToBlack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -106,11 +97,5 @@
     <ClCompile Include="ModuleHole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
-=======
-    <ClCompile Include="FadeToBlack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>
