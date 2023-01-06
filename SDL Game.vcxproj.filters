@@ -59,6 +59,12 @@
     <ClInclude Include="ModuleHole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\FadeToBlack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,6 +101,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModuleHole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\FadeToBlack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
