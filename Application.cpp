@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "FadeToBlack.h"
 
 Application::Application()
 {
@@ -25,9 +24,6 @@ Application::Application()
 	AddModule(input);
 	AddModule(audio);
 	AddModule(hole);
-
-	//fadetoblack
-	AddModule(fade);
 	
 	// Scenes
 	AddModule(scene_intro);

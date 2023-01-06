@@ -13,7 +13,6 @@
 #include "ModulePhysics.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleHole.h"
-#include "FadeToBlack.h"
 
 class Application
 {
@@ -27,7 +26,6 @@ public:
 	ModuleSceneIntro* scene_intro;
 	ModulePhysics* physics;
 	ModuleHole* hole;
-	FadeToBlack* fade;
 
 private:
 

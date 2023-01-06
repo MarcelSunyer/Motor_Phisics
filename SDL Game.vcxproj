@@ -69,8 +69,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\FadeToBlack.h" />
-    <ClInclude Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\log.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ModuleHole.h" />
@@ -88,7 +86,6 @@
     <ClInclude Include="p2Point.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\XML_Gloton_Games\Gloton Galactico\Game\Source\FadeToBlack.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ModuleHole.cpp" />
     <ClCompile Include="log.cpp" />
