@@ -70,7 +70,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="FadeToBlack.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="log.h" />
     <ClInclude Include="ModuleHole.h" />
     <ClInclude Include="ModulePhysics.h" />
     <ClInclude Include="p2List.h" />
@@ -87,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="FadeToBlack.cpp" />
     <ClCompile Include="ModuleHole.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
