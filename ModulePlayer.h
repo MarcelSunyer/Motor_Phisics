@@ -4,16 +4,13 @@
 #include "Globals.h"
 #include "p2Point.h"
 
-class PhysBody;
-
-struct Object
+enum class Controls
 {
-	SDL_Texture* graphic;
-	PhysBody* body;
-	uint fx;
-
-	Object() : graphic(NULL), body(NULL)
-	{}
+	POSITION,
+	VELOCITY,
+	FORCE,
+	MOMENTUM,	//Es lo mismo que cantidad de movimiento p = m * v
+	ACCELERATION
 };
 
 class ModulePlayer : public Module
@@ -28,19 +25,13 @@ public:
 
 public:
 
-	Object ball;
-	Object flipper1;
-	Object flipper2;
-	Object spring;
+	//Debug info controles (Solo visual)
+	SDL_Texture* texto_controles;
+	SDL_Rect rect_texto_controles = { 0, 50, 400 , 50 };
 
-	PhysBody* flipper1_wheel;
-	PhysBody* flipper2_wheel;
-	PhysBody* spring_wheel;
+	//God Mode para volar
+	bool god_mode;
 
-	Object flipper_up1;
-	Object flipper_up2;
-	PhysBody* flipper_up1_wheel;
-	PhysBody* flipper_up2_wheel;
-
-	PhysBody* sensor1;
+	//Variable para cambiar los controles
+	Controls control_system = Controls::VELOCITY;
 };
