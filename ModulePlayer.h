@@ -46,8 +46,12 @@ public:
 	SDL_Rect rect_texto_controles = { 0, 50, 400 , 50 };
 
 	//God Mode para volar
+<<<<<<< Updated upstream
 	bool god_mode;
 	SDL_Texture* god_mode_texture;
+=======
+	bool god_mode = false;
+>>>>>>> Stashed changes
 
 	//Variable para cambiar los controles
 	Controls control_system = Controls::VELOCITY;
@@ -65,4 +69,5 @@ public:
 	//Debug info integrador (Solo visual)
 	SDL_Texture* integrator_name;
 	SDL_Rect rect_integrator_name = { 0, 60, 200, 30 };
+
 };

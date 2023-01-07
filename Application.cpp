@@ -17,12 +17,13 @@ Application::Application()
 	// They will CleanUp() in reverse order
 
 	// Main Modules
-	AddModule(window);
-	AddModule(physics);
-	AddModule(renderer);
-	AddModule(textures);
 	AddModule(input);
+	AddModule(window);
+	AddModule(textures);
 	AddModule(audio);
+
+
+	AddModule(physics);
 	AddModule(hole);
 	
 	// Scenes
@@ -30,6 +31,9 @@ Application::Application()
 	
 	// Player
 	AddModule(player);
+
+
+	AddModule(renderer);
 }
 
 Application::~Application()
