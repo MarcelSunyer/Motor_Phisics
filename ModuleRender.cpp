@@ -71,6 +71,18 @@ update_status ModuleRender::PostUpdate()
 	//Blit integrador
 	Blit(App->player->integrator_name, 5, 100, &App->player->rect_integrator_name);
 	
+	//Blit God Mode
+	if (!App->player->god_mode)	//GodMode Off
+	{
+		SDL_Rect rect_godmode = { 0, 0, 200, 30 };
+		Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
+	}
+	else                        //GodMode On
+	{
+		SDL_Rect rect_godmode = { 0, 30, 200, 30 };
+		Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
+	}
+
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;
 }

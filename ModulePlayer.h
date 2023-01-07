@@ -47,6 +47,7 @@ public:
 
 	//God Mode para volar
 	bool god_mode;
+	SDL_Texture* god_mode_texture;
 
 	//Variable para cambiar los controles
 	Controls control_system = Controls::VELOCITY;

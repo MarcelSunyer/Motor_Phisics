@@ -23,6 +23,8 @@ bool ModulePlayer::Start()
 
 	integrator_name = App->textures->Load("Assets/Integrators.png");
 
+	god_mode_texture = App->textures->Load("Assets/GodMode.png");
+
 	return true;
 }
 
@@ -293,6 +295,7 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(texto_controles);
 	App->textures->Unload(num_fps);
 	App->textures->Unload(integrator_name);
+	App->textures->Unload(god_mode_texture);
 
 	return true;
 }
