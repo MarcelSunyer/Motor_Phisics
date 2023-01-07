@@ -60,13 +60,16 @@ update_status ModuleRender::PostUpdate()
 {
 	//Blit del titulo
 	SDL_Rect rect = { 0, 0, 500, 50 };
-	Blit(App->player->texto_controles, 0, 0, &rect);
+	Blit(App->player->texto_controles, 5, 0, &rect);
 
 	//Blit del Control method
-	Blit(App->player->texto_controles, 0, 50, &App->player->rect_texto_controles);
+	Blit(App->player->texto_controles, 5, 50, &App->player->rect_texto_controles);
 
 	//Blit FPS
 	Blit(App->player->num_fps, 910, 0, &App->player->rect_num_fps);
+
+	//Blit integrador
+	Blit(App->player->integrator_name, 5, 100, &App->player->rect_integrator_name);
 	
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;

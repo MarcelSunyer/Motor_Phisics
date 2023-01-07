@@ -21,6 +21,14 @@ enum class FPS
 
 };
 
+enum class Integrador
+{
+	VERLET,
+	FWD_EULER,
+	BWD_EULER
+
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -49,4 +57,11 @@ public:
 	//Debug info FPS (Solo visual)
 	SDL_Texture* num_fps;
 	SDL_Rect rect_num_fps = { 0, 30, 100, 30 };
+
+	// Variable para controlar el integrador seleccionado
+	Integrador selected_integrator = Integrador::VERLET;
+
+	//Debug info integrador (Solo visual)
+	SDL_Texture* integrator_name;
+	SDL_Rect rect_integrator_name = { 0, 60, 200, 30 };
 };

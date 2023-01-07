@@ -21,20 +21,41 @@ bool ModulePlayer::Start()
 
 	num_fps = App->textures->Load("Assets/FPS.png");
 
-	return true;
-}
-
-// Unload assets
-bool ModulePlayer::CleanUp()
-{
-	LOG("Unloading player");
+	integrator_name = App->textures->Load("Assets/Integrators.png");
 
 	return true;
 }
+
+
 
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	//Cambiar integrador
+	//Cambiar los FPS
+	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+	{
+		switch (selected_integrator)
+		{
+		case Integrador::VERLET:
+			selected_integrator = Integrador::FWD_EULER;
+			rect_integrator_name = { 0, 30, 200, 30 };
+			LOG("FWD_EULER");
+			break;
+		case Integrador::FWD_EULER:
+			selected_integrator = Integrador::BWD_EULER;
+			rect_integrator_name = { 0, 0, 200, 30 };
+			LOG("BWD_EULER");
+			break;
+		case Integrador::BWD_EULER:
+			selected_integrator = Integrador::VERLET;
+			rect_integrator_name = { 0, 60, 200, 30 };
+			LOG("VERLET");
+			break;
+		}
+	}
+
+	
 	if (App->physics->balls.front().on_floor == true)
 	{
 		App->physics->balls.front().physics_enabled = false;
@@ -263,4 +284,16 @@ update_status ModulePlayer::Update()
 }
 
 
+
+// Unload assets
+bool ModulePlayer::CleanUp()
+{
+	LOG("Unloading player");
+
+	App->textures->Unload(texto_controles);
+	App->textures->Unload(num_fps);
+	App->textures->Unload(integrator_name);
+
+	return true;
+}
 

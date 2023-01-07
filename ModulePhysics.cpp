@@ -178,7 +178,19 @@ update_status ModulePhysics::PreUpdate()
 		// ----------------------------------------------------------------------------------------
 
 		// We will use the 2nd order "Velocity Verlet" method for integration.
-		integrator_velocity_verlet(ball, dt);
+		
+		switch (App->player->selected_integrator)
+		{
+		case Integrador::VERLET:
+			integrator_velocity_verlet(ball, dt);
+			break;
+		case Integrador::FWD_EULER:
+			integrator_velocity_euler_forward(ball, dt);
+			break;
+		case Integrador::BWD_EULER:
+			integrator_velocity_euler_backward(ball, dt);
+			break;
+		}
 
 		// Step #4: solve collisions
 		// ----------------------------------------------------------------------------------------
@@ -577,6 +589,25 @@ void integrator_velocity_verlet(PhysBall& ball, float dt)
 	ball.y += ball.vy * dt + 0.5f * ball.ay * dt * dt;
 	ball.vx += ball.ax * dt;
 	ball.vy += ball.ay * dt;
+}
+
+// Integration scheme: Velocity Euler forward
+void integrator_velocity_euler_forward(PhysBall& ball, float dt)
+{
+	ball.vx = ball.vx + ball.ax * dt;
+	ball.vy = ball.vy + ball.ay * dt;
+	ball.x = ball.x + ball.vx * dt;
+	ball.y = ball.y + ball.vy * dt;
+	
+}
+
+// Integration scheme: Velocity Euler backward
+void integrator_velocity_euler_backward(PhysBall& ball, float dt)
+{
+	ball.x = ball.x + ball.vx * dt;
+	ball.y = ball.y + ball.vy * dt;
+	ball.vx = ball.vx + ball.ax * dt;
+	ball.vy = ball.vy + ball.ay * dt;
 }
 
 // Detect collision with ground

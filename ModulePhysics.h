@@ -149,6 +149,12 @@ void compute_hydrodynamic_buoyancy(float& fx, float& fy, const PhysBall& ball, c
 // Integration scheme: Velocity Verlet
 void integrator_velocity_verlet(PhysBall& ball, float dt);
 
+// Integration scheme: Velocity Euler Forward
+void integrator_velocity_euler_forward(PhysBall& ball, float dt);
+
+// Integration scheme: Velocity Euler Backward
+void integrator_velocity_euler_backward(PhysBall& ball, float dt);
+
 // Detect collision with ground
 bool is_colliding_with_ground(const PhysBall& ball, const Ground& ground);
 
