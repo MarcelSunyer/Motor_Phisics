@@ -179,31 +179,31 @@ update_status ModuleRender::Update()
 		case Controls::MOMENTUM:
 
 			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-				App->physics->balls.front().vy = 10;
+				App->physics->balls.front().vy = 10 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-				App->physics->balls.front().vy = -10;
+				App->physics->balls.front().vy = -10 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-				App->physics->balls.front().vx = -10;
+				App->physics->balls.front().vx = -10 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-				App->physics->balls.front().vx = 10;
+				App->physics->balls.front().vx = 10 / App->physics->balls.front().mass;
 
 			break;
 		case Controls::ACCELERATION:
 
 			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-				App->physics->balls.front().fy = 100;
+				App->physics->balls.front().fy = 100 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-				App->physics->balls.front().fy = -100;
+				App->physics->balls.front().fy = -100 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-				App->physics->balls.front().fx = -100;
+				App->physics->balls.front().fx = -100 / App->physics->balls.front().mass;
 
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-				App->physics->balls.front().fx = 100;
+				App->physics->balls.front().fx = 100 / App->physics->balls.front().mass;
 
 			break;
 		}
