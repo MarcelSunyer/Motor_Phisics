@@ -282,6 +282,12 @@ update_status ModulePlayer::Update()
 		App->physics->balls.front().physics_enabled = true;
 	}
 
+	if (!App->physics->balls.front().physics_enabled)
+	{
+		App->renderer->DrawLine(App->physics->balls.front().x* PIXELS_PER_METER, App->physics->balls.front().y, App->physics->balls.front().x, App->physics->balls.front().y, 0, 255, 0);
+
+	}
+
 	return UPDATE_CONTINUE;
 }
 
