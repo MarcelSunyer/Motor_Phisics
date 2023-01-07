@@ -13,6 +13,14 @@ enum class Controls
 	ACCELERATION
 };
 
+enum class FPS
+{
+	HALF_FPS,
+	STANDAR,
+	DOUBLE_FPS
+
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -34,4 +42,11 @@ public:
 
 	//Variable para cambiar los controles
 	Controls control_system = Controls::VELOCITY;
+
+	// Variable para controlar los FPS (delta time)
+	FPS fps_limit = FPS::STANDAR;
+
+	//Debug info FPS (Solo visual)
+	SDL_Texture* num_fps;
+	SDL_Rect rect_num_fps = { 0, 30, 100, 30 };
 };

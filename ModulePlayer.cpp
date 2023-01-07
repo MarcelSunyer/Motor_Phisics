@@ -19,6 +19,8 @@ bool ModulePlayer::Start()
 
 	texto_controles = App->textures->Load("Assets/Controls.png");
 
+	num_fps = App->textures->Load("Assets/FPS.png");
+
 	return true;
 }
 
@@ -37,7 +39,6 @@ update_status ModulePlayer::Update()
 	{
 		App->physics->balls.front().physics_enabled = false;
 	}
-
 
 	// Cambiar la posición del saque
 	if (App->physics->balls.front().physics_enabled == false)

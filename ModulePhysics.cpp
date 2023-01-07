@@ -418,6 +418,33 @@ update_status ModulePhysics::PreUpdate()
 
 update_status ModulePhysics::PostUpdate()
 {
+	//Cambiar los FPS
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+	{
+		switch (App->player->fps_limit)
+		{
+		case FPS::HALF_FPS:
+			App->player->fps_limit = FPS::STANDAR;
+			App->player->rect_num_fps = { 0, 30, 100, 30 };
+			dt = 1 / 60;
+			LOG("FPS->STANDAR")
+				break;
+		case FPS::STANDAR:
+			App->player->fps_limit = FPS::DOUBLE_FPS;
+			App->player->rect_num_fps = { 0, 60, 100, 30 };
+			dt = 1 / 120;
+			LOG("FPS->DOUBLE_FPS")
+				break;
+		case FPS::DOUBLE_FPS:
+			App->player->fps_limit = FPS::HALF_FPS;
+			App->player->rect_num_fps = { 0, 0, 100, 30 };
+			dt = 1 / 30;
+			LOG("FPS->HALF_FPS")
+				break;
+		}
+	}
+
+
 	
 	// Colors
 	int color_r, color_g, color_b;

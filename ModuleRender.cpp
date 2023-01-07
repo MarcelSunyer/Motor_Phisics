@@ -64,6 +64,9 @@ update_status ModuleRender::PostUpdate()
 
 	//Blit del Control method
 	Blit(App->player->texto_controles, 0, 50, &App->player->rect_texto_controles);
+
+	//Blit FPS
+	Blit(App->player->num_fps, 910, 0, &App->player->rect_num_fps);
 	
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;

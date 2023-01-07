@@ -2,7 +2,14 @@
 #include "Application.h"
 #include "Globals.h"
 
+
 #include "SDL/include/SDL.h"
+#include <time.h>
+#include <chrono>
+#include <iostream>
+#include <stack>
+using namespace std;
+
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
@@ -25,6 +32,10 @@ int main(int argc, char ** argv)
 
 	while (state != MAIN_EXIT)
 	{
+		double t = 0.0;
+
+		auto start = chrono::steady_clock::now();
+
 		switch (state)
 		{
 		case MAIN_CREATION:
@@ -80,6 +91,13 @@ int main(int argc, char ** argv)
 			break;
 
 		}
+
+		//Salida de seguridad
+		auto end = chrono::steady_clock::now();
+		auto telapsed = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+		if ((App->physics->dt - telapsed) > 0.0f)
+			Sleep((App->physics->dt - telapsed));
+
 	}
 
 	delete App;
