@@ -4,7 +4,8 @@
 Different types of hotkeys to modify the physics on the game.
 
 Wind
-- Hold 1 and press M(More) to add rifht wind.
+
+- Hold 1 and press M(More) to add rigth wind.
 
 - Hold 1 and press L(Less) to add left wind.
 
@@ -12,17 +13,20 @@ Wind
 
 - Hold 1 and press D(Down) to add wind going down.
 
+
 Atmosphere Desnity
 
 - Hold 2 and press M(More) to add atmosphere density.
 
 - Hold 2 and press L(Less) to remove atmosphere density.
 
+
 Mass and radius
 
 - Hold 3 and press M(More) to add mass and radius.
 
 - Hold 3 and press L(Less) to remove mass and radius.
+
 
 Aerodynamic Drag coefficient
 
@@ -44,17 +48,38 @@ Coefficients of friction
 
 - Hold 6 and press L(Less) to remove coefficients of friction.
 
+
 Coefficients of restitution
 
 - Hold 7 and press M(More) to add coefficients of restitution.
 
 - Hold 7 and press L(Less) to remove coefficients of restitution.
 
+
 Water density
 
 - Hold 8 and press M(More) to add water density.
 
 - Hold 8 and press L(Less) to remove water density.
+
+
+God Mode (Free Movment)
+
+- Press G to toggle God Mode
+
+- Press TAB to toggle between different control schemes (Position/Velocity/Momentum/Acceleration/Force)
+
+
+Reset ball position
+
+- Press B to reset ball position and physics
+
+
+Enable/Dissable ball physics
+
+- Press P to togge physics
+
+
 
 
 

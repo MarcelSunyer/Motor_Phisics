@@ -55,9 +55,7 @@ update_status ModuleRender::Update()
 {
 	if (App->physics->balls.front().on_floor == true)
 	{
-		
 		App->physics->balls.front().physics_enabled = false;
-		
 	}
 
 	
@@ -74,6 +72,15 @@ update_status ModuleRender::Update()
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
 		App->physics->balls.front().physics_enabled = !App->physics->balls.front().physics_enabled;
 	
+	//On/Off GodMode
+	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN)
+	{
+		App->physics->balls.front().physics_enabled = !App->physics->balls.front().physics_enabled;
+		god_mode = !god_mode;
+	}
+		
+
+
 	//Reset de la posición de la bola
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
 	{
@@ -119,84 +126,87 @@ update_status ModuleRender::Update()
 			break;
 		}		
 	}
-	
-	switch (control_system)
+
+	if (god_mode)
 	{
-	case Controls::POSITION:
+		switch (control_system)
+		{
+		case Controls::POSITION:
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().y = App->physics->balls.front().y + 1;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				App->physics->balls.front().y = App->physics->balls.front().y + 1;
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().y = App->physics->balls.front().y - 1;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				App->physics->balls.front().y = App->physics->balls.front().y - 1;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().x = App->physics->balls.front().x - 1;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				App->physics->balls.front().x = App->physics->balls.front().x - 1;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().x = App->physics->balls.front().x + 1;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				App->physics->balls.front().x = App->physics->balls.front().x + 1;
 
-		break;
-	case Controls::VELOCITY:
+			break;
+		case Controls::VELOCITY:
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().vy = 10;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				App->physics->balls.front().vy = 10;
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().vy = -10;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				App->physics->balls.front().vy = -10;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().vx = -10;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				App->physics->balls.front().vx = -10;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().vx = 10;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				App->physics->balls.front().vx = 10;
 
-		break;
-	case Controls::FORCE:
+			break;
+		case Controls::FORCE:
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().fy = 100;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				App->physics->balls.front().fy = 100;
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().fy = -100;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				App->physics->balls.front().fy = -100;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().fx = -100;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				App->physics->balls.front().fx = -100;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().fx = 100;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				App->physics->balls.front().fx = 100;
 
-		break;
-	case Controls::MOMENTUM:
+			break;
+		case Controls::MOMENTUM:
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().vy = 10;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				App->physics->balls.front().vy = 10;
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().vy = -10;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				App->physics->balls.front().vy = -10;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().vx = -10;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				App->physics->balls.front().vx = -10;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().vx = 10;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				App->physics->balls.front().vx = 10;
 
-		break;
-	case Controls::ACCELERATION:
+			break;
+		case Controls::ACCELERATION:
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			App->physics->balls.front().fy = 100;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				App->physics->balls.front().fy = 100;
 
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			App->physics->balls.front().fy = -100;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				App->physics->balls.front().fy = -100;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			App->physics->balls.front().fx = -100;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				App->physics->balls.front().fx = -100;
 
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			App->physics->balls.front().fx = 100;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				App->physics->balls.front().fx = 100;
 
-		break;
+			break;
+		}
 	}
 
 

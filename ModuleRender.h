@@ -36,6 +36,9 @@ public:
 	//Debug info controles (Solo visual)
 	SDL_Texture* texto_controles;
 	SDL_Rect rect_texto_controles = { 0, 50, 400 , 50 };
+	
+	//God Mode para volar
+	bool god_mode;
 
 	//Variable para cambiar los controles
 	Controls control_system = Controls::VELOCITY;

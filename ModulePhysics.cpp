@@ -307,6 +307,7 @@ update_status ModulePhysics::PreUpdate()
 		ball.ax = ball.ay = 0.0f;
 
 
+		//DEBUG CONTROLS
 		//Aplicar fuerza de viento hacia la derecha
 		if (App->input->GetKey(SDL_SCANCODE_1)==KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
 		{
@@ -458,11 +459,13 @@ update_status ModulePhysics::PostUpdate()
 		
 		if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h)==true)
 		{
-			App->hole->tocado = true;
 			ball.x = 2.0f;
-			ball.y = (ground.y + ground.h) + 1.1;
+			ball.y = (ground.y + ground.h) + 2.0f;
 			ball.vx = 0;
 			ball.vy = 0;
+			ball.fx = 0;
+			ball.fy = 0;
+			ball.physics_enabled = false;
 
 		}
 	}
