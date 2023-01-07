@@ -80,7 +80,9 @@ Enable/Dissable ball physics
 - Press P to togge physics
 
 
+Integrators
 
+- Press I to toggle between different integrators (Verlet/Backward Euler/Forward Euler)
 
 
 
