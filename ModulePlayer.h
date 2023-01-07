@@ -46,12 +46,11 @@ public:
 	SDL_Rect rect_texto_controles = { 0, 50, 400 , 50 };
 
 	//God Mode para volar
-<<<<<<< Updated upstream
+
 	bool god_mode;
 	SDL_Texture* god_mode_texture;
-=======
-	bool god_mode = false;
->>>>>>> Stashed changes
+
+
 
 	//Variable para cambiar los controles
 	Controls control_system = Controls::VELOCITY;

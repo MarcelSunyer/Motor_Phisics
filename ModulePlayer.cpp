@@ -288,19 +288,11 @@ update_status ModulePlayer::Update()
 
 	if (!App->physics->balls.front().physics_enabled)
 	{
-<<<<<<< Updated upstream
-		App->renderer->DrawLine(App->physics->balls.front().x* PIXELS_PER_METER, App->physics->balls.front().y, App->physics->balls.front().x, App->physics->balls.front().y, 0, 255, 0);
-
-	}
-
-=======
 		//LINEA QUE INDICA LA DIRECCION HACIA LA QUE SE TIRARA LA PELOTA
 		/*int posx = App->physics->balls.front().x * METERS_PER_PIXELS;
 		App->renderer->DrawLine(posx, App->physics->balls.front().y, App->physics->balls.front().x + 16, App->physics->balls.front().y + 16, 0, 255, 0);*/
 	}
 
-
->>>>>>> Stashed changes
 	return UPDATE_CONTINUE;
 }
 
