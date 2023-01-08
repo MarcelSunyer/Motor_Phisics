@@ -599,23 +599,23 @@ update_status ModulePhysics::PostUpdate()
 	{
 		switch (App->player->fps_limit)
 		{
-		case FPS::HALF_FPS:
-			App->player->fps_limit = FPS::STANDAR;
-			App->player->rect_num_fps = { 0, 30, 100, 30 };
+		case FPS::FIXED_DT:
+			App->player->fps_limit = FPS::TIME_WAIT;
+			App->player->rect_num_fps = { 0, 30, 200, 30 };
 			dt = 1 / 60;
-			LOG("FPS->STANDAR")
+			LOG("FPS->TIME_WAIT")
 				break;
-		case FPS::STANDAR:
-			App->player->fps_limit = FPS::DOUBLE_FPS;
-			App->player->rect_num_fps = { 0, 60, 100, 30 };
+		case FPS::TIME_WAIT:
+			App->player->fps_limit = FPS::VARIABLE_DT;
+			App->player->rect_num_fps = { 0, 60, 200, 30 };
 			dt = 1 / 120;
-			LOG("FPS->DOUBLE_FPS")
+			LOG("FPS->VARIABLE_DT")
 				break;
-		case FPS::DOUBLE_FPS:
-			App->player->fps_limit = FPS::HALF_FPS;
-			App->player->rect_num_fps = { 0, 0, 100, 30 };
+		case FPS::VARIABLE_DT:
+			App->player->fps_limit = FPS::FIXED_DT;
+			App->player->rect_num_fps = { 0, 0, 200, 30 };
 			dt = 1 / 30;
-			LOG("FPS->HALF_FPS")
+			LOG("FPS->FIXED_DT")
 				break;
 		}
 	}

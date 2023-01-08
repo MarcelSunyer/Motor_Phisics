@@ -15,9 +15,9 @@ enum class Controls
 
 enum class FPS
 {
-	HALF_FPS,
-	STANDAR,
-	DOUBLE_FPS
+	FIXED_DT,
+	TIME_WAIT,
+	VARIABLE_DT
 
 };
 
@@ -64,7 +64,7 @@ public:
 	Controls control_system = Controls::VELOCITY;
 
 	// Variable para controlar los FPS (delta time)
-	FPS fps_limit = FPS::STANDAR;
+	FPS fps_limit = FPS::TIME_WAIT;
 
 	//Debug info FPS (Solo visual)
 	SDL_Texture* num_fps;
