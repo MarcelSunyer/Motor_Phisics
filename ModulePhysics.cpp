@@ -672,9 +672,20 @@ update_status ModulePhysics::PostUpdate()
 				ball.physics_enabled = false;
 
 			}
+		
+			double radianes = App->physics->balls.front().angle * M_PI / 180;
+
+			// Calcula las coordenadas del vector unitario
+			double x = std::sin(radianes);
+			double y = std::cos(radianes);
+
+			if (!App->physics->balls.front().physics_enabled)
+			{
+				//LINEA QUE INDICA LA DIRECCION HACIA LA QUE SE TIRARA LA PELOTA
+				App->renderer->DrawLine(pos_x, pos_y, pos_x + METERS_TO_PIXELS(x) * (App->physics->balls.front().potencia / 8), pos_y - METERS_TO_PIXELS(y) * (App->physics->balls.front().potencia / 8), 0, 255, 0);
+			}
+
 		}
-
-
 	}
 	return UPDATE_CONTINUE;
 }
