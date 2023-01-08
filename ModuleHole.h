@@ -21,6 +21,7 @@ public:
 
 public:
 	SDL_Texture* juans;
+	SDL_Texture* victoria;
 	SDL_Rect juan[3];
 	int random = 1;
 	bool tocado = false;

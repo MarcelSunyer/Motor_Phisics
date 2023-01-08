@@ -68,6 +68,7 @@ public:
 
 	//escenas
 	SDL_Texture* startSprite;
+	
 
 	bool lose = false;
 	bool start = true;

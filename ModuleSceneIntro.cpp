@@ -19,6 +19,7 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	startSprite = App->textures->Load("Assets/Start.png");
+	
 
 	App->renderer->camera.x = App->renderer->camera.y = 0;
 
@@ -33,6 +34,8 @@ bool ModuleSceneIntro::CleanUp()
 	LOG("Unloading Intro scene");
 
 	App->textures->Unload(startSprite);
+	
+
 
 	return true;
 }
@@ -55,8 +58,6 @@ update_status ModuleSceneIntro::Update()
 
 	
 
-
-	
 	
 
 	return UPDATE_CONTINUE;

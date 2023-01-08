@@ -24,6 +24,8 @@ ModuleHole::~ModuleHole()
 bool ModuleHole::Start()
 {
 	juans = App->textures->Load("Assets/Palo_golf.png");
+	victoria = App->textures->Load("Assets/Finish.png");
+
 	LOG("Loading holes");
 	//Posicion_1 || Hacer una variable x y y para cada espacio de la array y que estos sean randoms.
 
@@ -41,8 +43,11 @@ update_status ModuleHole::Update()
 {
 	if (tocado == true)
 	{
-		Randomizer(random);
-		tocado = false;
+		App->renderer->Blit(victoria, 0, 0);
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
+			Randomizer(random);
+			tocado = false;
+		}
 	}
 	
 

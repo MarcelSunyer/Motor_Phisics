@@ -621,7 +621,7 @@ update_status ModulePhysics::PostUpdate()
 	}
 
 
-	if (App->scene_intro->start == false) {
+	if (App->scene_intro->start == false ) {
 
 		// Colors
 		int color_r, color_g, color_b;
