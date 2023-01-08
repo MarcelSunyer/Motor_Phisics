@@ -262,59 +262,181 @@ update_status ModulePhysics::PreUpdate()
 		
 		if (is_colliding_with_ground(ball, plataforma_1))
 		{
-			// TP ball to ground surface
-			
-			
+			//Decección de que está en el suelo
+			if (ball.vy > -0.9 && ball.vy < 0.9)
+			{
+
+				switch (App->player->selected_collisioner)
+				{
+				case Collisioner::M1:
+					ball.y = ball.y + 1.1;
+					break;
+
+				case Collisioner::M2:
+					ball.y = ball.y + 1 - ball.radius;
+					break;
+
+				case Collisioner::M3:
+
+					break;
+				}
+
+				ball.on_floor = true;
+			}
+
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_1.y + plataforma_1.h + ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y + 2 * ((plataforma_1.y + plataforma_1.h) - old_y) + 2 * ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
+
 			// Elastic bounce with ground
 			ball.vy = -ball.vy;
-			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
-			ball.vy *= ball.coef_friction;
-			ball.vx *= ball.coef_restitution;
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
 		}
 		
 		//-----------------------------------------------------------------------
 
 		if (is_colliding_with_ground(ball, plataforma_2))
 		{
-			// TP ball to ground surface
+			//Decección de que está en el suelo
+			if (ball.vy > -0.9 && ball.vy < 0.9)
+			{
 
+				switch (App->player->selected_collisioner)
+				{
+				case Collisioner::M1:
+					ball.y = ball.y + 1.1;
+					break;
+
+				case Collisioner::M2:
+					ball.y = ball.y + 1 - ball.radius;
+					break;
+
+				case Collisioner::M3:
+
+					break;
+				}
+
+				ball.on_floor = true;
+			}
+
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_2.y + plataforma_2.h + ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y + 2 * ((plataforma_2.y + plataforma_2.h) - old_y) + 2 * ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
 
 			// Elastic bounce with ground
 			ball.vy = -ball.vy;
-			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
-			ball.vy *= ball.coef_friction;
-			ball.vx *= ball.coef_restitution;
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
 		}
 
 		//-----------------------------------------------------------------------
 		
 		if (is_colliding_with_ground(ball, plataforma_3))
 		{
-			// TP ball to ground surface
+			//Decección de que está en el suelo
+			if (ball.vy > -0.9 && ball.vy < 0.9)
+			{
 
+				switch (App->player->selected_collisioner)
+				{
+				case Collisioner::M1:
+					ball.y = ball.y + 1.1;
+					break;
+
+				case Collisioner::M2:
+					ball.y = ball.y + 1 - ball.radius;
+					break;
+
+				case Collisioner::M3:
+
+					break;
+				}
+
+				ball.on_floor = true;
+			}
+
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_3.y + plataforma_3.h + ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y + 2 * ((plataforma_3.y + plataforma_3.h) - old_y) + 2 * ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
 
 			// Elastic bounce with ground
 			ball.vy = -ball.vy;
-			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
-			ball.vy *= ball.coef_friction;
-			ball.vx *= ball.coef_restitution;
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
 		}
 		
 		//Paredes
-
+		//Pared de la izquierda
 		if (is_colliding_with_ground(ball, pared_d))
 		{
-			// TP ball to ground surface
+			float old_x = ball.x;
 
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.x = (pared_d.x + pared_d.w) + ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.x = ball.x - 0.7 * ((pared_d.x + pared_d.w) - old_x);
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
 
-			// Elastic bounce with ground
-			ball.vy = -ball.vy;
+				break;
+			}
+
+			// Elastic bounce with wall
 			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
@@ -323,15 +445,28 @@ update_status ModulePhysics::PreUpdate()
 		}
 		
 		//------------------------------------------------------------------
-		
+		//Pared de la derecha
 		if (is_colliding_with_ground(ball, pared_i))
 		{
+			float old_x = ball.x;
 
-			// TP ball to ground surface
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.x = pared_i.x - ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.x = ball.x - 0.7 * (pared_i.x - old_x);
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
 
+				break;
+			}
 
-			// Elastic bounce with ground
-			ball.vy = -ball.vy;
+			// Elastic bounce with wall
 			ball.vx = -ball.vx;
 
 			// FUYM non-elasticity
