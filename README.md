@@ -87,7 +87,16 @@ Integrators
 
 Collisoners
 
+IMPORTANT: Toggle God Mode on and off before taking your first shot to get it to work properly
+
 - Press C to toggle between different collisioners(M1:TP the ball to the floor/M2:TP the ball to the relative position/M3:Without handling collisions)
+- Press W, A, S, D to move in God Mode
+
+Gameplay
+
+- Press SPACE to apply the force of a blow to the ball (Like the blow of a golf club)
+- Press LEFT and RIGHT ARROW to change the angle of direction of the ball
+- Press UP and DOWN ARROW to change the power of the shot
 
 
 
