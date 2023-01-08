@@ -1,5 +1,12 @@
 # Motor_Phisics
 
+Release on Github: https://github.com/MarcelSunyer/Motor_Phisics/releases/tag/Release
+
+Credits:
+-David Ruiz -> https://github.com/xdavido
+-Marecel Sunyer -> https://github.com/MarcelSunyer
+-Eric Luque -> https://github.com/ericlr1
+-Guillem Aixut -> https://github.com/GuillemAixut
 
 Different types of hotkeys to modify the physics on the game.
 
