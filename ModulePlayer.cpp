@@ -23,7 +23,7 @@ bool ModulePlayer::Start()
 
 	texto_controles = App->textures->Load("Assets/Controls.png");
 
-	num_fps = App->textures->Load("Assets/FPS.png");
+	num_fps = App->textures->Load("Assets/dt.png");
 
 	integrator_name = App->textures->Load("Assets/Integrators.png");
 
