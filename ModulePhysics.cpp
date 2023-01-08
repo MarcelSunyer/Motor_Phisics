@@ -34,62 +34,81 @@ bool ModulePhysics::Start()
 	
 	plataforma_1 = Ground();
 	plataforma_1.x = 3.0f; // [m]
-	plataforma_1.y = 15.0f; // [m]
+	plataforma_1.y = 16.0f; // [m]
 	plataforma_1.w = 15.0f; // [m]
-	plataforma_1.h = 2.0f; // [m]
+	plataforma_1.h = 1.0f; // [m]
 	
 	plataforma_1_pared_d = Ground();
-	plataforma_1_pared_d.x = plataforma_1.x + plataforma_1.w + 0.005f;
-	plataforma_1_pared_d.y = plataforma_1.y;
+	plataforma_1_pared_d.x = plataforma_1.x + plataforma_1.w + 0.01f;
+	plataforma_1_pared_d.y = plataforma_1.y - 1;
 	plataforma_1_pared_d.w = 0.2f;
-	plataforma_1_pared_d.h = plataforma_1.h;
+	plataforma_1_pared_d.h = plataforma_1.h + 1;
 
 	plataforma_1_pared_i = Ground();
 	plataforma_1_pared_i.x = plataforma_1.x - 0.01f;
-	plataforma_1_pared_i.y = plataforma_1.y;
+	plataforma_1_pared_i.y = plataforma_1.y - 1;
 	plataforma_1_pared_i.w = 0.2f;
-	plataforma_1_pared_i.h = plataforma_1.h;
+	plataforma_1_pared_i.h = plataforma_1.h + 1;
+
+	plataforma_1_suelo = Ground();
+	plataforma_1_suelo.x = plataforma_1.x;
+	plataforma_1_suelo.y = plataforma_1.y - 1.1f;
+	plataforma_1_suelo.w = plataforma_1.w;
+	plataforma_1_suelo.h = 0.2f;
+
 	
 
 	//-------------------------------------------------------------------------
 	
 	plataforma_2 = Ground();
 	plataforma_2.x = 35.0f; // [m]
-	plataforma_2.y = 22.0f; // [m]
+	plataforma_2.y = 23.0f; // [m]
 	plataforma_2.w = 10.0f; // [m]
-	plataforma_2.h = 2.0f; // [m]
+	plataforma_2.h = 1.0f; // [m]
 
 	plataforma_2_pared_d = Ground();
-	plataforma_2_pared_d.x = plataforma_2.x + plataforma_2.w + 0.005f;
-	plataforma_2_pared_d.y = plataforma_2.y;
+	plataforma_2_pared_d.x = plataforma_2.x + plataforma_2.w + 0.01f;
+	plataforma_2_pared_d.y = plataforma_2.y - 1;
 	plataforma_2_pared_d.w = 0.2f;
-	plataforma_2_pared_d.h = plataforma_2.h;
+	plataforma_2_pared_d.h = plataforma_2.h + 1;
 
 	plataforma_2_pared_i = Ground();
 	plataforma_2_pared_i.x = plataforma_2.x - 0.01f;
-	plataforma_2_pared_i.y = plataforma_2.y;
+	plataforma_2_pared_i.y = plataforma_2.y - 1;
 	plataforma_2_pared_i.w = 0.2f;
-	plataforma_2_pared_i.h = plataforma_2.h;
+	plataforma_2_pared_i.h = plataforma_2.h + 1;
+
+	plataforma_2_suelo = Ground();
+	plataforma_2_suelo.x = plataforma_2.x;
+	plataforma_2_suelo.y = plataforma_2.y - 1.1f;
+	plataforma_2_suelo.w = plataforma_2.w;
+	plataforma_2_suelo.h = 0.2f;
 	
 	//-------------------------------------------------------------------------
 	
 	plataforma_3 = Ground();
 	plataforma_3.x = 5.0f; // [m]
-	plataforma_3.y = 28.0f; // [m]
+	plataforma_3.y = 29.0f; // [m]
 	plataforma_3.w = 5.0f; // [m]
-	plataforma_3.h = 2.0f; // [m]
+	plataforma_3.h = 1.0f; // [m]
 
 	plataforma_3_pared_d = Ground();
-	plataforma_3_pared_d.x = plataforma_3.x + plataforma_3.w + 0.005f;
-	plataforma_3_pared_d.y = plataforma_3.y;
+	plataforma_3_pared_d.x = plataforma_3.x + plataforma_3.w + 0.01f;
+	plataforma_3_pared_d.y = plataforma_3.y - 1;
 	plataforma_3_pared_d.w = 0.2f;
-	plataforma_3_pared_d.h = plataforma_3.h;
+	plataforma_3_pared_d.h = plataforma_3.h + 1;
 
 	plataforma_3_pared_i = Ground();
 	plataforma_3_pared_i.x = plataforma_3.x - 0.01f;
-	plataforma_3_pared_i.y = plataforma_3.y;
+	plataforma_3_pared_i.y = plataforma_3.y - 1;
 	plataforma_3_pared_i.w = 0.2f;
-	plataforma_3_pared_i.h = plataforma_3.h;
+	plataforma_3_pared_i.h = plataforma_3.h + 1;
+
+	plataforma_3_suelo = Ground();
+	plataforma_3_suelo.x = plataforma_3.x;
+	plataforma_3_suelo.y = plataforma_3.y - 1.1f;
+	plataforma_3_suelo.w = plataforma_3.w;
+	plataforma_3_suelo.h = 0.2f;
 
 	//-------------------------------------------------------------------------
 	//Paredes
@@ -688,6 +707,93 @@ update_status ModulePhysics::PreUpdate()
 			ball.vx *= ball.coef_restitution;
 		}
 
+		//Collisions suelo
+
+		if (is_colliding_with_ground(ball, plataforma_1_suelo))
+		{
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_1_suelo.y - ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y - 0.7 * (plataforma_1_suelo.y - old_y) - ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+
+			// FUYM non-elasticity
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
+		}
+
+		if (is_colliding_with_ground(ball, plataforma_2_suelo))
+		{
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_2_suelo.y - ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y - 2 * (plataforma_2_suelo.y - old_y);
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+
+			// FUYM non-elasticity
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
+		}
+
+		if (is_colliding_with_ground(ball, plataforma_3_suelo))
+		{
+			float old_y = ball.y;
+
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = plataforma_3_suelo.y + plataforma_3_suelo.h - ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y - 2 * ((plataforma_3_suelo.y + plataforma_3_suelo.h) - old_y) - 2 * ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
+
+			// Elastic bounce with ground
+			ball.vy = -ball.vy;
+
+			// FUYM non-elasticity
+			ball.vx *= ball.coef_friction;
+			ball.vy *= ball.coef_restitution;
+		}
+
+
 		// Step #0: Clear old values
 		// ----------------------------------------------------------------------------------------
 
@@ -846,14 +952,18 @@ update_status ModulePhysics::PostUpdate()
 		App->renderer->DrawQuad(plataforma_1.pixels(), 255, color_g, color_b);
 		App->renderer->DrawQuad(plataforma_1_pared_d.pixels(), 255, 255, 255);
 		App->renderer->DrawQuad(plataforma_1_pared_i.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_1_suelo.pixels(), 100, 100, 100);
+		
 
 		App->renderer->DrawQuad(plataforma_2.pixels(), 255, 0, 255);
 		App->renderer->DrawQuad(plataforma_2_pared_d.pixels(), 255, 255, 255);
 		App->renderer->DrawQuad(plataforma_2_pared_i.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_2_suelo.pixels(), 100, 100, 100);
 
 		App->renderer->DrawQuad(plataforma_3.pixels(), color_r, color_g, 255);
 		App->renderer->DrawQuad(plataforma_3_pared_d.pixels(), 255, 255, 255);
 		App->renderer->DrawQuad(plataforma_3_pared_i.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_3_suelo.pixels(), 100, 100, 100);
 
 		App->renderer->DrawQuad(pared_d.pixels(), 255, 255, 255);
 		App->renderer->DrawQuad(pared_i.pixels(), 255, 255, 255);

@@ -122,14 +122,17 @@ public:
 	Ground plataforma_1{};
 	Ground plataforma_1_pared_d{};
 	Ground plataforma_1_pared_i{};
+	Ground plataforma_1_suelo{};
 
 	Ground plataforma_2{};
 	Ground plataforma_2_pared_d{};
 	Ground plataforma_2_pared_i{};
+	Ground plataforma_2_suelo{};
 
 	Ground plataforma_3{};
 	Ground plataforma_3_pared_d{};
 	Ground plataforma_3_pared_i{};
+	Ground plataforma_3_suelo{};
 
 	Ground pared_d{};
 	Ground pared_i{};
