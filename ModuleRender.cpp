@@ -58,38 +58,41 @@ update_status ModuleRender::Update()
 // PostUpdate present buffer to screen
 update_status ModuleRender::PostUpdate()
 {
-	//Blit del titulo
-	SDL_Rect rect = { 0, 0, 500, 50 };
-	Blit(App->player->texto_controles, 5, 0, &rect);
 
-	//Blit del Control method
-	Blit(App->player->texto_controles, 5, 50, &App->player->rect_texto_controles);
+	if (App->scene_intro->start == false) {
+		//Blit del titulo
+		SDL_Rect rect = { 0, 0, 500, 50 };
+		Blit(App->player->texto_controles, 5, 0, &rect);
 
-	//Blit FPS
-	Blit(App->player->num_fps, 910, 0, &App->player->rect_num_fps);
+		//Blit del Control method
+		Blit(App->player->texto_controles, 5, 50, &App->player->rect_texto_controles);
 
-	//Blit integrador
-	Blit(App->player->integrator_name, 5, 100, &App->player->rect_integrator_name);
+		//Blit FPS
+		Blit(App->player->num_fps, 910, 0, &App->player->rect_num_fps);
 
-	//Blit titulo collisioner
-	SDL_Rect r = { 0, 0, 150, 30 };
-	Blit(App->player->collisioner_name, 5, 230, &r);
-	
-	//Blit collisioner
-	Blit(App->player->collisioner_name, 5, 260, &App->player->rect_collisioner_name);
-	
-	//Blit God Mode
-	if (!App->player->god_mode)	//GodMode Off
-	{
-		SDL_Rect rect_godmode = { 0, 0, 200, 30 };
-		Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
+		//Blit integrador
+		Blit(App->player->integrator_name, 5, 100, &App->player->rect_integrator_name);
+
+		//Blit titulo collisioner
+		SDL_Rect r = { 0, 0, 150, 30 };
+		Blit(App->player->collisioner_name, 5, 230, &r);
+
+		//Blit collisioner
+		Blit(App->player->collisioner_name, 5, 260, &App->player->rect_collisioner_name);
+
+		//Blit God Mode
+		if (!App->player->god_mode)	//GodMode Off
+		{
+			SDL_Rect rect_godmode = { 0, 0, 200, 30 };
+			Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
+		}
+		else                        //GodMode On
+		{
+			SDL_Rect rect_godmode = { 0, 30, 200, 30 };
+			Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
+		}
+
 	}
-	else                        //GodMode On
-	{
-		SDL_Rect rect_godmode = { 0, 30, 200, 30 };
-		Blit(App->player->god_mode_texture, 5, 130, &rect_godmode);
-	}
-
 	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;
 }
