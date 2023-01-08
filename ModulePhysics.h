@@ -136,8 +136,9 @@ public:
 	Water water{};
 
 	// Misc
-	float dt = 1.0 / 60.0;
-	bool Bloques;
+	float target_fps = 60.0f;
+	double dt = 1.0 / target_fps;
+
 private:
 
 	bool debug;

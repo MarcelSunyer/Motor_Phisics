@@ -155,6 +155,9 @@ bool ModulePhysics::Start()
 
 update_status ModulePhysics::PreUpdate()
 {
+
+	dt = 1 / target_fps;
+
 	// Process all balls in the scenario
 	for (auto& ball : balls)
 	{
@@ -636,23 +639,23 @@ update_status ModulePhysics::PostUpdate()
 	{
 		switch (App->player->fps_limit)
 		{
-		case FPS::FIXED_DT:
-			App->player->fps_limit = FPS::TIME_WAIT;
-			App->player->rect_num_fps = { 0, 30, 200, 30 };
-			dt = 1 / 60;
-			LOG("FPS->TIME_WAIT")
+		case FPS::HALF_FPS:
+			App->player->fps_limit = FPS::STANDAR_FPS;
+			App->player->rect_num_fps = { 0, 30, 100, 30 };
+			target_fps = 60;
+			LOG("FPS->STANDAR_FPS")
 				break;
-		case FPS::TIME_WAIT:
-			App->player->fps_limit = FPS::VARIABLE_DT;
-			App->player->rect_num_fps = { 0, 60, 200, 30 };
-			dt = 1 / 120;
+		case FPS::STANDAR_FPS:
+			App->player->fps_limit = FPS::DOUBLE_FPS;
+			App->player->rect_num_fps = { 0, 60, 100, 30 };
+			target_fps = 120;
 			LOG("FPS->VARIABLE_DT")
 				break;
-		case FPS::VARIABLE_DT:
-			App->player->fps_limit = FPS::FIXED_DT;
-			App->player->rect_num_fps = { 0, 0, 200, 30 };
-			dt = 1 / 30;
-			LOG("FPS->FIXED_DT")
+		case FPS::DOUBLE_FPS:
+			App->player->fps_limit = FPS::HALF_FPS;
+			App->player->rect_num_fps = { 0, 0, 100, 30 };
+			target_fps = 30;
+			LOG("FPS->HALF_FPS")
 				break;
 		}
 	}
