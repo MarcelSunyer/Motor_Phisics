@@ -29,6 +29,8 @@ bool ModulePlayer::Start()
 
 	god_mode_texture = App->textures->Load("Assets/GodMode.png");
 
+	collisioner_name = App->textures->Load("Assets/Collisions.png");
+
 	return true;
 }
 
@@ -57,6 +59,29 @@ update_status ModulePlayer::Update()
 			selected_integrator = Integrador::VERLET;
 			rect_integrator_name = { 0, 60, 200, 30 };
 			LOG("VERLET");
+			break;
+		}
+	}
+
+	//Cambiar el collisioner
+	if (App->input->GetKey(SDL_SCANCODE_C) == KEY_DOWN)
+	{
+		switch (selected_collisioner)
+		{
+		case Collisioner::M1:
+			selected_collisioner = Collisioner::M2;
+			rect_collisioner_name = { 0, 60, 150, 30 };
+			LOG("M2");
+			break;
+		case Collisioner::M2:
+			selected_collisioner = Collisioner::M3;
+			rect_collisioner_name = { 0, 90, 150, 30 };
+			LOG("M3");
+			break;
+		case Collisioner::M3:
+			selected_collisioner = Collisioner::M1;			
+			rect_collisioner_name = { 0, 30, 150, 30 };
+			LOG("M1");
 			break;
 		}
 	}
@@ -93,7 +118,7 @@ update_status ModulePlayer::Update()
 	if (App->input->GetKey(SDL_SCANCODE_B) == KEY_DOWN)
 	{
 		App->physics->balls.front().x = 2.0f;
-		App->physics->balls.front().y = (App->physics->ground.y + App->physics->ground.h) + 2.0f;
+		App->physics->balls.front().y = (App->physics->ground.y + App->physics->ground.h) + App->physics->balls.front().radius;
 		App->physics->balls.front().vx = 0;
 		App->physics->balls.front().vy = 0;
 		App->physics->balls.front().fx = 0;
@@ -307,6 +332,7 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(num_fps);
 	App->textures->Unload(integrator_name);
 	App->textures->Unload(god_mode_texture);
+	App->textures->Unload(collisioner_name);
 
 	return true;
 }

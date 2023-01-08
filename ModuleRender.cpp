@@ -70,6 +70,13 @@ update_status ModuleRender::PostUpdate()
 
 	//Blit integrador
 	Blit(App->player->integrator_name, 5, 100, &App->player->rect_integrator_name);
+
+	//Blit titulo collisioner
+	SDL_Rect r = { 0, 0, 150, 30 };
+	Blit(App->player->collisioner_name, 5, 230, &r);
+	
+	//Blit collisioner
+	Blit(App->player->collisioner_name, 5, 260, &App->player->rect_collisioner_name);
 	
 	//Blit God Mode
 	if (!App->player->god_mode)	//GodMode Off

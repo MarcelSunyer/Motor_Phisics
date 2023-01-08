@@ -211,16 +211,44 @@ update_status ModulePhysics::PreUpdate()
 		if (is_colliding_with_ground(ball, ground))
 		{
 			//Decección de que está en el suelo
-			if (ball.vy > -0.5 && ball.vy < 0.5)
+			if (ball.vy > -0.9 && ball.vy < 0.9)
 			{
-				ball.y = ball.y + 2;
+			
+				switch (App->player->selected_collisioner)
+				{
+					case Collisioner::M1:
+						ball.y = ball.y + 1.1;
+					break;
+
+					case Collisioner::M2:
+						ball.y = ball.y + 1 - ball.radius;
+					break;
+
+					case Collisioner::M3:
+
+					break;
+				}
+
 				ball.on_floor = true;
 			}
 			
-			
+			float old_y = ball.y;
 
-			// TP ball to ground surface
-			ball.y = ground.y + ground.h + ball.radius;
+			switch (App->player->selected_collisioner)
+			{
+			case Collisioner::M1:
+				// TP ball to ground surface
+				ball.y = ground.y + ground.h + ball.radius;
+				break;
+			case Collisioner::M2:
+				//TP ball to the relative position "inside" the ground but in the other way
+				ball.y = ball.y + 2 *( (ground.y + ground.h) - old_y) + 2*ball.radius;
+				break;
+			case Collisioner::M3:
+				//Without any collision handling
+
+				break;
+			}
 
 			// Elastic bounce with ground
 			ball.vy = - ball.vy;

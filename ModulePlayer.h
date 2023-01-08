@@ -29,6 +29,14 @@ enum class Integrador
 
 };
 
+enum class Collisioner
+{
+	M1,	//TP directo de la bola al suelo
+	M2,	//TP de la bola a la posición relativa en vertical (según lo hundido que esta en el suelo)
+	M3	//Without doing nothing
+
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -68,5 +76,12 @@ public:
 	//Debug info integrador (Solo visual)
 	SDL_Texture* integrator_name;
 	SDL_Rect rect_integrator_name = { 0, 60, 200, 30 };
+
+	// Variable para controlar el colisionador seleccionado
+	Collisioner selected_collisioner = Collisioner::M1;
+
+	//Debug info integrador (Solo visual)
+	SDL_Texture* collisioner_name;
+	SDL_Rect rect_collisioner_name = { 0, 30, 150, 30 };
 
 };

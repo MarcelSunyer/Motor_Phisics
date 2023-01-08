@@ -85,8 +85,9 @@ Integrators
 - Press I to toggle between different integrators (Verlet/Backward Euler/Forward Euler)
 
 
+Collisoners
 
-
+- Press C to toggle between different collisioners(M1:TP the ball to the floor/M2:TP the ball to the relative position/M3:Without handling collisions)
 
 
 
