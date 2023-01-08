@@ -884,6 +884,7 @@ update_status ModulePhysics::PostUpdate()
 
 			if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h) == true)
 			{
+				App->hole->tocado = true;
 				ball.x = 2.0f;
 				ball.y = (ground.y + ground.h) + 2.0f;
 				ball.vx = 0;
