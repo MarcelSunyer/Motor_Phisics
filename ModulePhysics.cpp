@@ -749,7 +749,7 @@ update_status ModulePhysics::PreUpdate()
 				break;
 			case Collisioner::M2:
 				//TP ball to the relative position "inside" the ground but in the other way
-				ball.y = ball.y - 2 * (plataforma_2_suelo.y - old_y);
+				ball.y = ball.y - 0.7 * (plataforma_2_suelo.y - old_y) - ball.radius;
 				break;
 			case Collisioner::M3:
 				//Without any collision handling
@@ -773,11 +773,11 @@ update_status ModulePhysics::PreUpdate()
 			{
 			case Collisioner::M1:
 				// TP ball to ground surface
-				ball.y = plataforma_3_suelo.y + plataforma_3_suelo.h - ball.radius;
+				ball.y = plataforma_3_suelo.y - ball.radius;
 				break;
 			case Collisioner::M2:
 				//TP ball to the relative position "inside" the ground but in the other way
-				ball.y = ball.y - 2 * ((plataforma_3_suelo.y + plataforma_3_suelo.h) - old_y) - 2 * ball.radius;
+				ball.y = ball.y - 0.7 * (plataforma_3_suelo.y - old_y) - ball.radius;
 				break;
 			case Collisioner::M3:
 				//Without any collision handling
