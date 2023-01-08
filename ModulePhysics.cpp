@@ -38,6 +38,19 @@ bool ModulePhysics::Start()
 	plataforma_1.w = 15.0f; // [m]
 	plataforma_1.h = 2.0f; // [m]
 	
+	plataforma_1_pared_d = Ground();
+	plataforma_1_pared_d.x = plataforma_1.x + plataforma_1.w + 0.005f;
+	plataforma_1_pared_d.y = plataforma_1.y;
+	plataforma_1_pared_d.w = 0.2f;
+	plataforma_1_pared_d.h = plataforma_1.h;
+
+	plataforma_1_pared_i = Ground();
+	plataforma_1_pared_i.x = plataforma_1.x - 0.01f;
+	plataforma_1_pared_i.y = plataforma_1.y;
+	plataforma_1_pared_i.w = 0.2f;
+	plataforma_1_pared_i.h = plataforma_1.h;
+	
+
 	//-------------------------------------------------------------------------
 	
 	plataforma_2 = Ground();
@@ -45,6 +58,18 @@ bool ModulePhysics::Start()
 	plataforma_2.y = 22.0f; // [m]
 	plataforma_2.w = 10.0f; // [m]
 	plataforma_2.h = 2.0f; // [m]
+
+	plataforma_2_pared_d = Ground();
+	plataforma_2_pared_d.x = plataforma_2.x + plataforma_2.w + 0.005f;
+	plataforma_2_pared_d.y = plataforma_2.y;
+	plataforma_2_pared_d.w = 0.2f;
+	plataforma_2_pared_d.h = plataforma_2.h;
+
+	plataforma_2_pared_i = Ground();
+	plataforma_2_pared_i.x = plataforma_2.x - 0.01f;
+	plataforma_2_pared_i.y = plataforma_2.y;
+	plataforma_2_pared_i.w = 0.2f;
+	plataforma_2_pared_i.h = plataforma_2.h;
 	
 	//-------------------------------------------------------------------------
 	
@@ -53,6 +78,18 @@ bool ModulePhysics::Start()
 	plataforma_3.y = 28.0f; // [m]
 	plataforma_3.w = 5.0f; // [m]
 	plataforma_3.h = 2.0f; // [m]
+
+	plataforma_3_pared_d = Ground();
+	plataforma_3_pared_d.x = plataforma_3.x + plataforma_3.w + 0.005f;
+	plataforma_3_pared_d.y = plataforma_3.y;
+	plataforma_3_pared_d.w = 0.2f;
+	plataforma_3_pared_d.h = plataforma_3.h;
+
+	plataforma_3_pared_i = Ground();
+	plataforma_3_pared_i.x = plataforma_3.x - 0.01f;
+	plataforma_3_pared_i.y = plataforma_3.y;
+	plataforma_3_pared_i.w = 0.2f;
+	plataforma_3_pared_i.h = plataforma_3.h;
 
 	//-------------------------------------------------------------------------
 	//Paredes
@@ -631,8 +668,16 @@ update_status ModulePhysics::PostUpdate()
 		App->renderer->DrawQuad(ground.pixels(), color_r, color_g, color_b);
 
 		App->renderer->DrawQuad(plataforma_1.pixels(), 255, color_g, color_b);
+		App->renderer->DrawQuad(plataforma_1_pared_d.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_1_pared_i.pixels(), 255, 255, 255);
+
 		App->renderer->DrawQuad(plataforma_2.pixels(), 255, 0, 255);
+		App->renderer->DrawQuad(plataforma_2_pared_d.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_2_pared_i.pixels(), 255, 255, 255);
+
 		App->renderer->DrawQuad(plataforma_3.pixels(), color_r, color_g, 255);
+		App->renderer->DrawQuad(plataforma_3_pared_d.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(plataforma_3_pared_i.pixels(), 255, 255, 255);
 
 		App->renderer->DrawQuad(pared_d.pixels(), 255, 255, 255);
 		App->renderer->DrawQuad(pared_i.pixels(), 255, 255, 255);
