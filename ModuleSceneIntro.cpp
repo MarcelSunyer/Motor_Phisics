@@ -32,9 +32,10 @@ bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
+	App->textures->Unload(startSprite);
+
 	return true;
 }
-
 // Update: draw background
 update_status ModuleSceneIntro::Update()
 {
@@ -48,11 +49,14 @@ update_status ModuleSceneIntro::Update()
 
 		//Borrar el PRESS ENTER TO START
 		start = false;
+	
+
 	}
 
 	
-	//if (lose) {}
 
+
+	
 	
 
 	return UPDATE_CONTINUE;

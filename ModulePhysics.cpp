@@ -9,7 +9,8 @@
 
 ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	debug = true;
+		debug = true;
+
 }
 
 // Destructor
@@ -620,60 +621,61 @@ update_status ModulePhysics::PostUpdate()
 	}
 
 
-	
-	// Colors
-	int color_r, color_g, color_b;
+	if (App->scene_intro->start == false) {
 
-	// Draw ground
-	color_r = 0; color_g = 255; color_b = 0;
-	App->renderer->DrawQuad(ground.pixels(), color_r, color_g, color_b);
-	
-	App->renderer->DrawQuad(plataforma_1.pixels(), 255, color_g, color_b);
-	App->renderer->DrawQuad(plataforma_2.pixels(), 255, 0, 255);
-	App->renderer->DrawQuad(plataforma_3.pixels(), color_r, color_g, 255);
+		// Colors
+		int color_r, color_g, color_b;
 
-	App->renderer->DrawQuad(pared_d.pixels(), 255, 255, 255);
-	App->renderer->DrawQuad(pared_i.pixels(), 255, 255, 255);
-	// Draw water
-	color_r = 0; color_g = 0; color_b = 255;
-	App->renderer->DrawQuad(water.pixels(), color_r, color_g, color_b);
+		// Draw ground
+		color_r = 0; color_g = 255; color_b = 0;
+		App->renderer->DrawQuad(ground.pixels(), color_r, color_g, color_b);
 
-	// Draw all balls in the scenario
-	for (auto& ball : balls)
-	{
-		// Convert from physical magnitudes to geometrical pixels
-		int pos_x = METERS_TO_PIXELS(ball.x);
-		int pos_y = SCREEN_HEIGHT - METERS_TO_PIXELS(ball.y);
-		int size_r = METERS_TO_PIXELS(ball.radius);
+		App->renderer->DrawQuad(plataforma_1.pixels(), 255, color_g, color_b);
+		App->renderer->DrawQuad(plataforma_2.pixels(), 255, 0, 255);
+		App->renderer->DrawQuad(plataforma_3.pixels(), color_r, color_g, 255);
 
-		// Select color
-		if (ball.physics_enabled)
+		App->renderer->DrawQuad(pared_d.pixels(), 255, 255, 255);
+		App->renderer->DrawQuad(pared_i.pixels(), 255, 255, 255);
+		// Draw water
+		color_r = 0; color_g = 0; color_b = 255;
+		App->renderer->DrawQuad(water.pixels(), color_r, color_g, color_b);
+
+		// Draw all balls in the scenario
+		for (auto& ball : balls)
 		{
-			color_r = 255; color_g = 255; color_b = 255;
-		}
-		else
-		{
-			color_r = 255; color_g = 0; color_b = 0;
+			// Convert from physical magnitudes to geometrical pixels
+			int pos_x = METERS_TO_PIXELS(ball.x);
+			int pos_y = SCREEN_HEIGHT - METERS_TO_PIXELS(ball.y);
+			int size_r = METERS_TO_PIXELS(ball.radius);
+
+			// Select color
+			if (ball.physics_enabled)
+			{
+				color_r = 255; color_g = 255; color_b = 255;
+			}
+			else
+			{
+				color_r = 255; color_g = 0; color_b = 0;
+			}
+
+			// Draw ball
+			App->renderer->DrawCircle(pos_x, pos_y, size_r, color_r, color_g, color_b);
+
+			if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h) == true)
+			{
+				ball.x = 2.0f;
+				ball.y = (ground.y + ground.h) + 2.0f;
+				ball.vx = 0;
+				ball.vy = 0;
+				ball.fx = 0;
+				ball.fy = 0;
+				ball.physics_enabled = false;
+
+			}
 		}
 
-		// Draw ball
-		App->renderer->DrawCircle(pos_x, pos_y, size_r, color_r, color_g, color_b);
-		
-		if (check_collision_circle_rectangle(pos_x, pos_y, ball.radius, App->hole->juan[App->hole->random].x, App->hole->juan[App->hole->random].y, App->hole->juan[App->hole->random].w, App->hole->juan[App->hole->random].h)==true)
-		{
-			ball.x = 2.0f;
-			ball.y = (ground.y + ground.h) + 2.0f;
-			ball.vx = 0;
-			ball.vy = 0;
-			ball.fx = 0;
-			ball.fy = 0;
-			ball.physics_enabled = false;
 
-		}
 	}
-	
-	
-
 	return UPDATE_CONTINUE;
 }
 

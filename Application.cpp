@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "ModuleSceneIntro.h"
 
 Application::Application()
 {
@@ -19,15 +20,18 @@ Application::Application()
 	// Main Modules
 	AddModule(input);
 	AddModule(window);
-	AddModule(textures);
+	
 	AddModule(audio);
 
 
 	AddModule(physics);
 	AddModule(hole);
 	
+	
 	// Scenes
 	AddModule(scene_intro);
+	AddModule(textures);
+	
 	
 	// Player
 	AddModule(player);

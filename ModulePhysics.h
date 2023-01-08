@@ -61,6 +61,7 @@ public:
 
 	// Variable para dejar controlar la ball al jugador
 	bool on_floor;
+	
 
 	//Funciones:
 
@@ -128,7 +129,7 @@ public:
 
 	// Misc
 	float dt = 1.0 / 60.0;
-
+	bool Bloques;
 private:
 
 	bool debug;
