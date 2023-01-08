@@ -92,7 +92,8 @@ int main(int argc, char ** argv)
 
 		}
 
-		//Salida de seguridad
+		//Salida de seguridad 
+		//Si el tiempo que ha tardado en ejecutarse todo el codigo es mayor que el deseado (Según FPSs) esperamos la cantidad de milisegundos necesaria para que no se sobreacelere
 		auto end = chrono::steady_clock::now();
 		auto telapsed = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 		if ((App->physics->dt - telapsed) > 0.0f)
